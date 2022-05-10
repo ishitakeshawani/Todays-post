@@ -27,7 +27,7 @@ export const LandingPage = () => {
           </div>
           <div className="landing-page-bottom">
             <button className="btn join-now">Join Now</button>
-            <Link to="/" className="link-no-style blue-color">
+            <Link to="/home" className="link-no-style blue-color">
               Already have an account?
             </Link>
           </div>

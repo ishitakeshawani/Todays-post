@@ -1,0 +1,202 @@
+body {
+  background: var(--bgcolor);
+}
+
+.homepage {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.homepage-section {
+  display: flex;
+  margin: 0.7rem 10rem;
+  height: 90vh;
+  justify-content: center;
+  width: 70%;
+  padding: 1rem;
+}
+
+.left-section,
+.right-section {
+  position: sticky;
+  background: var(--white);
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 1rem;
+  margin: 1rem 0;
+  padding: 0.6rem 0;
+  height: 76vh;
+}
+
+.right-section {
+  width: 90vw;
+  padding: 1rem;
+}
+
+.sidebar-item {
+  display: flex;
+  color: var(--black);
+  align-items: center;
+  justify-content: flex-start;
+  text-align: left;
+  gap: 0.7rem;
+  margin: 0 1rem;
+  width: 11rem;
+  padding: 0.6rem 0.5rem;
+  border-radius: 5px;
+  font-size: 1rem;
+}
+
+.sidebar-item:hover {
+  color: var(--blue);
+  cursor: pointer;
+  background: var(--gray);
+}
+
+.sidebar-item > i {
+  padding: 0 1rem;
+  font-size: 1.2rem;
+  width: 2.7rem;
+}
+
+.middle-section {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem;
+  width: 60%;
+}
+
+.add-post-card {
+  background: orange;
+  height: fit-content;
+  padding: 1rem;
+  border-radius: 5px;
+  background: var(--white);
+  box-shadow: var(--post-card-box-shadow);
+}
+
+.profile-input {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.text-area {
+  padding: 0.7rem;
+  font-size: 0.9rem;
+  border: 2px solid var(--blue);
+  border-radius: 5px;
+}
+
+.add-post-btn {
+  background: var(--blue);
+  border-radius: 1px;
+  padding: 5px 1.2rem;
+}
+
+.add-post-card-footer {
+  margin: 0.7rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.add-post-card-footer-left {
+  margin-left: 1.9rem;
+  display: flex;
+  gap: 0.8rem;
+}
+
+.add-post-footer-btn {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
+  color: var(--blue);
+}
+
+.add-post-footer-btn:hover {
+  color: var(--black);
+}
+
+.latest-post-title {
+  margin: 10px 0;
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.post {
+  background: var(--white);
+  box-shadow: var(--post-card-box-shadow);
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.post-user-detail {
+  display: flex;
+  gap: 1rem;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.username-date {
+  display: flex;
+  justify-content: flex-start;
+  gap: 10px;
+}
+
+.post-text {
+  padding: 0.6rem 0rem 0.6rem 3rem;
+  font-size: 1rem;
+}
+
+.like-comment-bookmark-section {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.1rem 0rem 0.1rem 3rem;
+}
+
+.like-comment {
+  display: flex;
+  gap: 0.8rem;
+}
+
+.profilename {
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.username-date {
+  color: var(--gray-text);
+  font-size: 0.9rem;
+}
+
+.posts-at-home {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
+
+.user-suggested-profile {
+  display: flex;
+  width: 16rem;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.profile-name {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.follow-btn {
+  background: var(--blue);
+  color: var(--white);
+  border: none;
+  padding: 0.5rem 1rem;
+}
