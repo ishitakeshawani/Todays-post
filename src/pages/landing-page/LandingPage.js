@@ -33,7 +33,7 @@ export const LandingPage = () => {
             >
               Join Now
             </button>
-            <Link to="/home" className="link-no-style blue-color">
+            <Link to="/login" className="link-no-style blue-color">
               Already have an account?
             </Link>
           </div>
