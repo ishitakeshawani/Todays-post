@@ -1,5 +1,6 @@
 import { React, useState } from "react";
-import { useNavigate,Link } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
+import axios from "axios";
 
 export function LoginPage() {
   const [type, setType] = useState("password");
@@ -12,6 +13,53 @@ export function LoginPage() {
   //   const { dispatch } = useCart();
   const [error, setError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+  const doValidate = () => {
+    if (
+      !/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test(
+        userData.email
+      )
+    ) {
+      setError("Please enter a valid email address");
+      return false;
+    } else {
+      setError("");
+    }
+    if (
+      userData.password === "" ||
+      userData.password === undefined ||
+      userData.password === null
+    ) {
+      setPasswordError("Please enter password!");
+      return false;
+    } else {
+      setPasswordError("");
+    }
+    return true;
+  };
+  const onSubmitHandler = async (e) => {
+    try {
+      if (doValidate()) {
+        e.preventDefault();
+        const value = await axios.post("/api/auth/login", userData);
+        // setUser(value.data.foundUser);
+        localStorage.setItem("token", value.data.encodedToken);
+        // setIsLoggedIn(true);
+        // dispatch({
+        //   type: "INITIALIZE_CART",
+        //   payload: value.data.foundUser.cart,
+        // });
+        setUserData({
+          email: "",
+          password: "",
+        });
+        navigate("/home");
+      }
+    } catch (e) {
+      // const notify = () => toast(e.message);
+      // notify();
+      console.log(e);
+    }
+  };
   return (
     <div className="login-page">
       {/* <ToastContainer /> */}

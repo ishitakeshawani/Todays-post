@@ -22,6 +22,55 @@ export function SignUpPage() {
   const [type, setType] = useState("password");
   const [confirmPasswordType, setConfirmPasswordType] = useState("password");
   const [passwordError, setPasswordError] = useState("");
+  const doValidate = () => {
+    if (
+      !/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test(
+        userData.email
+      )
+    ) {
+      setError("Please enter a valid email address");
+      return false;
+    } else {
+      setError("");
+    }
+    if (userData.password !== userData.confirmPassword) {
+      setPasswordError("Password does not match!");
+      return false;
+    } else {
+      setPasswordError("");
+    }
+    return true;
+  };
+  const onHandleSubmit = async (e) => {
+    try {
+      if (doValidate()) {
+        e.preventDefault();
+        console.log(userData)
+        const value = await axios.post("/api/auth/signup", userData);
+        console.log(value.data.createdUser,value);
+        // setUser(value.data.createdUser);
+        localStorage.setItem("token", value.data.encodedToken);
+        localStorage.setItem("user", JSON.stringify(userData));
+        // setIsLoggedIn(true);
+        // dispatch({
+        //   type: "INITIALIZE_CART",
+        //   payload: value.data.createdUser.cart,
+        // });
+        setUserData({
+          email: "",
+          password: "",
+          confirmPassword: "",
+          firstName: "",
+          lastName: "",
+        });
+        navigate("/home");
+      }
+    } catch (e) {
+      // const notify = () => toast(e.message);
+      // notify();
+      console.log("error", e);
+    }
+  };
   return (
     <form>
       {/* <ToastContainer /> */}
