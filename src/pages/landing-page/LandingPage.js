@@ -1,9 +1,10 @@
 import React from "react";
 import landingpageimage from "../../assets/images/landing-page-image.svg";
 import "./landingpage.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export const LandingPage = () => {
+  const navigate = useNavigate();
   return (
     <div className="landing-page">
       <div className="landing-page-section">
@@ -26,7 +27,12 @@ export const LandingPage = () => {
             </div>
           </div>
           <div className="landing-page-bottom">
-            <button className="btn join-now">Join Now</button>
+            <button
+              className="btn join-now"
+              onClick={() => navigate("/signup")}
+            >
+              Join Now
+            </button>
             <Link to="/home" className="link-no-style blue-color">
               Already have an account?
             </Link>
