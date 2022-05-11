@@ -1,9 +1,14 @@
-import React from "react";
+import { React, useState } from "react";
 import { NavBar } from "../../components/navbar/NavBar";
 import "./homepage.css";
 import { NavLink } from "react-router-dom";
+import { AddPostModal } from "../../modals";
 
 export function HomePage() {
+  const [showModal, setShowModal] = useState(false);
+  const addPostShowModal = () => {
+    setShowModal(!showModal);
+  };
   return (
     <div className="homepage">
       <NavBar />
@@ -29,41 +34,18 @@ export function HomePage() {
             <span class="material-symbols-outlined">account_circle</span>
             <span>Profile</span>
           </NavLink>
+          <button
+            className="link-no-style sidebar-item btn add-post-btn-sidebar"
+            onClick={addPostShowModal}
+          >
+            <span>Add new post</span>
+          </button>
         </div>
         <div className="middle-section">
-          <div className="add-post-card">
-            <div className="profile-input">
-              <img
-                className="avatar"
-                src="https://i.pravatar.cc/30"
-                alt="profile avatar"
-              />
-              <textarea
-                name="post-input"
-                id="post-input"
-                cols="90"
-                rows="5"
-                className="text-area"
-                placeholder="Write something here.."
-              ></textarea>
-            </div>
-            <div className="add-post-card-footer">
-              <div className="add-post-card-footer-left">
-                <button className="add-post-footer-btn">
-                  <span className="material-symbols-outlined">
-                    add_reaction
-                  </span>
-                </button>
-                <button className="add-post-footer-btn">
-                  <span class="material-symbols-outlined">
-                    add_photo_alternate
-                  </span>
-                </button>
-              </div>
-              <button className="btn add-post-btn">Post</button>
-            </div>
-          </div>
-          <div className="latest-post-title">Latest Posts</div>
+          {showModal && (
+            <AddPostModal showModal={showModal} setShowModal={setShowModal} />
+          )}
+
           <div className="posts-at-home">
             <div className="post">
               <div className="post-user-detail">

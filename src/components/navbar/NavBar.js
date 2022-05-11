@@ -10,9 +10,6 @@ export function NavBar() {
       </Link>
 
       <div className="right-items">
-        <Link to="/" className="link-no-style nav-link nav-icon-link">
-          <i className="fa-solid fa-plus"></i>
-        </Link>
         <img
           className="avatar"
           src="https://i.pravatar.cc/30"
