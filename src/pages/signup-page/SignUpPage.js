@@ -2,10 +2,8 @@ import { React, useState } from "react";
 import "./signuppage.css";
 import "../login-page/loginpage.css";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
-// import { useAuth, useCart } from "contexts";
-// import { ToastContainer, toast } from "react-toastify";
-// import "react-toastify/dist/ReactToastify.css";
+import { useDispatch } from "react-redux";
+import { signup } from "../../features/auth/authSlice";
 
 export function SignUpPage() {
   const [userData, setUserData] = useState({
@@ -16,9 +14,8 @@ export function SignUpPage() {
     lastName: "",
   });
   const [error, setError] = useState("");
-  //   const { setUser, setIsLoggedIn } = useAuth();
-  //   const { dispatch } = useCart();
   let navigate = useNavigate();
+  const dispatch = useDispatch();
   const [type, setType] = useState("password");
   const [confirmPasswordType, setConfirmPasswordType] = useState("password");
   const [passwordError, setPasswordError] = useState("");
@@ -42,33 +39,17 @@ export function SignUpPage() {
     return true;
   };
   const onHandleSubmit = async (e) => {
-    try {
-      if (doValidate()) {
-        e.preventDefault();
-        console.log(userData)
-        const value = await axios.post("/api/auth/signup", userData);
-        console.log(value.data.createdUser,value);
-        // setUser(value.data.createdUser);
-        localStorage.setItem("token", value.data.encodedToken);
-        localStorage.setItem("user", JSON.stringify(userData));
-        // setIsLoggedIn(true);
-        // dispatch({
-        //   type: "INITIALIZE_CART",
-        //   payload: value.data.createdUser.cart,
-        // });
-        setUserData({
-          email: "",
-          password: "",
-          confirmPassword: "",
-          firstName: "",
-          lastName: "",
-        });
-        navigate("/home");
-      }
-    } catch (e) {
-      // const notify = () => toast(e.message);
-      // notify();
-      console.log("error", e);
+    if (doValidate()) {
+      e.preventDefault();
+      dispatch(signup(userData));
+      setUserData({
+        email: "",
+        password: "",
+        confirmPassword: "",
+        firstName: "",
+        lastName: "",
+      });
+      navigate("/home");
     }
   };
   return (

@@ -1,6 +1,7 @@
 import { React, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
-import axios from "axios";
+import { useDispatch } from "react-redux";
+import { login, signup } from "../../features/auth/authSlice";
 
 export function LoginPage() {
   const [type, setType] = useState("password");
@@ -9,8 +10,7 @@ export function LoginPage() {
     password: "",
   });
   let navigate = useNavigate();
-  //   const { setUser, setIsLoggedIn } = useAuth();
-  //   const { dispatch } = useCart();
+  const dispatch = useDispatch();
   const [error, setError] = useState("");
   const [passwordError, setPasswordError] = useState("");
   const doValidate = () => {
@@ -37,27 +37,14 @@ export function LoginPage() {
     return true;
   };
   const onSubmitHandler = async (e) => {
-    try {
-      if (doValidate()) {
-        e.preventDefault();
-        const value = await axios.post("/api/auth/login", userData);
-        // setUser(value.data.foundUser);
-        localStorage.setItem("token", value.data.encodedToken);
-        // setIsLoggedIn(true);
-        // dispatch({
-        //   type: "INITIALIZE_CART",
-        //   payload: value.data.foundUser.cart,
-        // });
-        setUserData({
-          email: "",
-          password: "",
-        });
-        navigate("/home");
-      }
-    } catch (e) {
-      // const notify = () => toast(e.message);
-      // notify();
-      console.log(e);
+    if (doValidate()) {
+      e.preventDefault();
+      dispatch(login(userData));
+      setUserData({
+        email: "",
+        password: "",
+      });
+      navigate("/home");
     }
   };
   return (
