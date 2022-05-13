@@ -12,6 +12,7 @@ export function SignUpPage() {
     confirmPassword: "",
     firstName: "",
     lastName: "",
+    username: "",
   });
   const [error, setError] = useState("");
   let navigate = useNavigate();
@@ -92,6 +93,24 @@ export function SignUpPage() {
               setUserData((prev) => ({
                 ...prev,
                 lastName: e.target.value,
+              }))
+            }
+          />
+          <div className="login-label">
+            <label for="" id="lastname">
+              User Name
+            </label>
+          </div>
+          <input
+            type="text"
+            class="login-input"
+            value={userData.username}
+            placeholder="ishita1608"
+            required
+            onChange={(e) =>
+              setUserData((prev) => ({
+                ...prev,
+                username: e.target.value,
               }))
             }
           />
