@@ -8,19 +8,18 @@ const initialState = {
   error: "",
 };
 
-export const createPost = createAsyncThunk(
-  "posts/addPost",
-  async (postToAdd) => {
-    try {
-      const { data: posts } = await axios.post("api/posts", { postToAdd });
-      return posts;
-    } catch (error) {
-      console.log(error);
-    }
+export const createPost = createAsyncThunk("posts/Post", async (postData) => {
+  try {
+      console.log(postData)
+    const { data: posts } = await axios.post("/api/posts", { postData });
+    console.log(posts)
+    return posts;
+  } catch (error) {
+    console.log(error.response);
   }
-);
+});
 
-export const getAllPosts = createAsyncThunk("posts/getPosts", async () => {
+export const getAllPosts = createAsyncThunk("posts/getAllPosts", async () => {
   try {
     const { data: posts } = await axios.get("/api/posts");
     return posts;
