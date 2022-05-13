@@ -4,6 +4,7 @@ import "../login-page/loginpage.css";
 import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signup } from "../../features/auth/authSlice";
+import { doValidate } from "./utiils";
 
 export function SignUpPage() {
   const [userData, setUserData] = useState({
@@ -19,27 +20,9 @@ export function SignUpPage() {
   const [type, setType] = useState("password");
   const [confirmPasswordType, setConfirmPasswordType] = useState("password");
   const [passwordError, setPasswordError] = useState("");
-  const doValidate = () => {
-    if (
-      !/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test(
-        userData.email
-      )
-    ) {
-      setError("Please enter a valid email address");
-      return false;
-    } else {
-      setError("");
-    }
-    if (userData.password !== userData.confirmPassword) {
-      setPasswordError("Password does not match!");
-      return false;
-    } else {
-      setPasswordError("");
-    }
-    return true;
-  };
+
   const onHandleSubmit = async (e) => {
-    if (doValidate()) {
+    if (doValidate(userData, setError, setPasswordError)) {
       e.preventDefault();
       dispatch(signup(userData));
       setUserData({
