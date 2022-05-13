@@ -13,11 +13,9 @@ body {
 .homepage-section {
   display: flex;
   margin-top: 1rem;
-  /* margin: 3rem 10rem; */
   height: 100vh;
   justify-content: center;
   width: 70vw;
-  /* padding: 3rem 0; */
 }
 
 .left-section,
