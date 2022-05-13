@@ -10,9 +10,8 @@ const initialState = {
 
 export const createPost = createAsyncThunk("posts/Post", async (postData) => {
   try {
-      console.log(postData)
     const { data: posts } = await axios.post("/api/posts", { postData });
-    console.log(posts)
+
     return posts;
   } catch (error) {
     console.log(error.response);
@@ -28,6 +27,34 @@ export const getAllPosts = createAsyncThunk("posts/getAllPosts", async () => {
   }
 });
 
+export const addLikeToPost = createAsyncThunk(
+  "posts/addLikeToPost",
+  async (postId) => {
+    try {
+      const {
+        data: { posts },
+      } = await axios.post(`/api/posts/like/${postId}`);
+      return posts;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const removeLikedPost = createAsyncThunk(
+  "posts/removeLikedPost",
+  async (postId) => {
+    try {
+      const {
+        data: { posts },
+      } = await axios.post(`/api/posts/dislike/${postId}`);
+      return posts;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 const postSlice = createSlice({
   name: "posts",
   initialState,
@@ -39,7 +66,7 @@ const postSlice = createSlice({
       })
       .addCase(createPost.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.posts = action.payload.posts;
+        state.posts = action.payload.posts.reverse();
       })
       .addCase(createPost.rejected, (state) => {
         state.isLoading = false;
@@ -50,11 +77,23 @@ const postSlice = createSlice({
       })
       .addCase(getAllPosts.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.posts = action.payload.posts;
+        state.posts = action.payload.posts.reverse();
       })
       .addCase(getAllPosts.rejected, (state) => {
         state.isLoading = false;
         state.error = "can not get posts.";
+      })
+      .addCase(addLikeToPost.fulfilled, (state, action) => {
+        state.posts = action.payload.reverse();
+      })
+      .addCase(addLikeToPost.rejected, (state) => {
+        state.error = "can not like post.";
+      })
+      .addCase(removeLikedPost.fulfilled, (state, action) => {
+        state.posts = action.payload.reverse();
+      })
+      .addCase(removeLikedPost.rejected, (state) => {
+        state.error = "can not dislike post.";
       });
   },
 });

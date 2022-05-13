@@ -56,7 +56,10 @@ export const authSlice = createSlice({
         state.isLoading = false;
         state.user = action.payload.createdUser;
         localStorage.setItem("token", action.payload.encodedToken);
-        localStorage.setItem("user", action.payload.createdUser);
+        localStorage.setItem(
+          "user",
+          JSON.stringify(action.payload.createdUser)
+        );
       })
       .addCase(signup.rejected, (state, action) => {
         state.isLoading = false;
