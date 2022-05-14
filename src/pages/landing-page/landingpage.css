@@ -1,0 +1,93 @@
+.landing-page {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.landing-page-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  gap: 10rem;
+}
+
+.landing-page-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: 23rem;
+  margin: 2rem;
+  width: 50vh;
+}
+
+.landing-page-img {
+  height: 25rem;
+  width: 25rem;
+}
+
+.project-name {
+  font-size: 3rem;
+  font-weight: 500;
+  color: var(--blue);
+}
+
+.post-title {
+  color: var(--black);
+}
+
+.landing-page-desc {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+}
+
+.desc-text {
+  font-size: 1.3rem;
+  font-weight: 500;
+  color: var(--gray-text);
+}
+
+.landing-page-sub-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
+  align-items: flex-start;
+}
+
+.desc-sub-text {
+  font-size: 0.9rem;
+}
+
+.landing-page-bottom {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.join-now {
+  background-color: var(--blue);
+  width: 50vh;
+}
+
+@media (max-width: 48em) {
+  .landing-page-img {
+    height: 18rem;
+    width: 18rem;
+  }
+  .landing-page-section {
+    gap: 1rem;
+  }
+}
+
+@media (max-width: 40em) {
+  .landing-page-img {
+    display: none;
+  }
+}
