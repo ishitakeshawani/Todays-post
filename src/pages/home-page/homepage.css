@@ -16,6 +16,7 @@ body {
   height: 100vh;
   justify-content: center;
   width: 70vw;
+  padding: 3rem 0;
 }
 
 .left-section,
@@ -210,4 +211,12 @@ body {
   border: none;
   padding: 0.5rem 1rem;
   cursor: pointer;
+}
+
+.like-count-section {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: flex-start;
+  color: var(--blue);
 }
