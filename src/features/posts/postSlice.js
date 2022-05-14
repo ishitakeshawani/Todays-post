@@ -6,6 +6,7 @@ const initialState = {
   posts: [],
   isLoading: false,
   error: "",
+  isPostInEditMode: false,
 };
 
 export const createPost = createAsyncThunk("posts/Post", async (postData) => {
@@ -55,10 +56,29 @@ export const removeLikedPost = createAsyncThunk(
   }
 );
 
+export const editPost = createAsyncThunk(
+  "posts/editPost",
+  async ({ postData, postId }) => {
+    try {
+      const {
+        data: { posts },
+      } = await axios.post(`/api/posts/edit/${postId}`, { postData });
+      console.log(posts);
+      return posts;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 const postSlice = createSlice({
   name: "posts",
   initialState,
-  reducers: {},
+  reducers: {
+    setEditPostMode: (state, action) => {
+      state.isPostInEditMode = action.payload;
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(createPost.pending, (state) => {
@@ -94,9 +114,22 @@ const postSlice = createSlice({
       })
       .addCase(removeLikedPost.rejected, (state) => {
         state.error = "can not dislike post.";
+      })
+      .addCase(editPost.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(editPost.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isPostInEditMode = false;
+        state.posts = action.payload.reverse();
+      })
+      .addCase(editPost.rejected, (state) => {
+        state.isLoading = false;
+        state.isPostInEditMode = false;
       });
   },
 });
 
 export const postReducer = postSlice.reducer;
 export const usePosts = () => useSelector((state) => state.posts);
+export const { setEditPostMode } = postSlice.actions;

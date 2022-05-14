@@ -1,10 +1,10 @@
 import { React, useState } from "react";
 import { useDispatch } from "react-redux";
 import { useAuth } from "../../features/auth/authSlice";
-import { createPost } from "../../features/posts/postSlice";
+import { createPost, editPost } from "../../features/posts/postSlice";
 import "./addpostmodal.css";
 
-export function AddPostModal({ showModal, setShowModal }) {
+export function AddPostModal({ showModal, setShowModal, isPostInEditMode, postId }) {
   const [postText, setPostText] = useState("");
   const { user } = useAuth();
   const dispatch = useDispatch();
@@ -12,14 +12,18 @@ export function AddPostModal({ showModal, setShowModal }) {
   const handleAddPost = (e) => {
     e.preventDefault();
     const { firstName, lastName, username } = user;
-    console.log(user, firstName, lastName,username);
+    console.log(user, firstName, lastName, username);
     const data = {
       firstName,
       lastName,
       username,
       content: postText,
     };
-    dispatch(createPost(data));
+    if (isPostInEditMode) {
+      dispatch(editPost({postData:data,postId}));
+    } else {
+      dispatch(createPost(data));
+    }
   };
   return (
     <div id="myModal" class="modal">
@@ -67,7 +71,7 @@ export function AddPostModal({ showModal, setShowModal }) {
                   handleAddPost(e);
                 }}
               >
-                Post
+                {isPostInEditMode ? "Edit Post" : "Post"}
               </button>
             </div>
           </div>
