@@ -6,6 +6,7 @@ import { addLikeToPost, removeLikedPost } from "../../features/posts/postSlice";
 
 export function PostCard({ post }) {
   const { user } = useAuth();
+  console.log(post.username, user.username);
   const dispatch = useDispatch();
   const isPostAlreadyLiked = isPostLiked(user, post.likes);
   console.log(isPostAlreadyLiked);
@@ -50,14 +51,28 @@ export function PostCard({ post }) {
             </button>
             <span>{post.likes?.likeCount} </span>
           </div>
-
           <button className="add-post-footer-btn">
             <span class="material-symbols-outlined">comment</span>
           </button>
         </div>
-        <button className="add-post-footer-btn">
-          <span class="material-symbols-outlined">bookmark</span>
-        </button>
+
+        {post.username === user.username ? (
+          <div className="edit-delete-bookmark">
+            <button className="add-post-footer-btn">
+              <span class="material-symbols-outlined">edit</span>
+            </button>
+            <button className="add-post-footer-btn">
+              <span class="material-symbols-outlined">delete</span>
+            </button>
+            <button className="add-post-footer-btn">
+              <span class="material-symbols-outlined">bookmark</span>
+            </button>
+          </div>
+        ) : (
+          <button className="add-post-footer-btn">
+            <span class="material-symbols-outlined">bookmark</span>
+          </button>
+        )}
       </div>
     </div>
   );

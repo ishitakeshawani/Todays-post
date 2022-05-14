@@ -135,6 +135,10 @@ body {
   color: var(--blue);
 }
 
+.add-post-footer-btn span {
+  font-size: 1.4rem;
+}
+
 .add-post-footer-btn:hover {
   color: var(--black);
 }
@@ -171,7 +175,8 @@ body {
   padding: 0.1rem 0rem 0.1rem 3rem;
 }
 
-.like-comment {
+.like-comment,
+.edit-delete-bookmark {
   display: flex;
   gap: 0.8rem;
 }
@@ -219,4 +224,5 @@ body {
   justify-content: center;
   align-items: flex-start;
   color: var(--blue);
+  font-size: 1rem;
 }
