@@ -12,7 +12,6 @@ const initialState = {
 export const createPost = createAsyncThunk("posts/Post", async (postData) => {
   try {
     const { data: posts } = await axios.post("/api/posts", { postData });
-
     return posts;
   } catch (error) {
     console.log(error.response);
@@ -63,7 +62,20 @@ export const editPost = createAsyncThunk(
       const {
         data: { posts },
       } = await axios.post(`/api/posts/edit/${postId}`, { postData });
-      console.log(posts);
+      return posts;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const deletePost = createAsyncThunk(
+  "posts/deletePost",
+  async (postId) => {
+    try {
+      const {
+        data: { posts },
+      } = await axios.delete(`/api/posts/${postId}`);
       return posts;
     } catch (error) {
       console.log(error);
@@ -126,6 +138,12 @@ const postSlice = createSlice({
       .addCase(editPost.rejected, (state) => {
         state.isLoading = false;
         state.isPostInEditMode = false;
+      })
+      .addCase(deletePost.fulfilled, (state, action) => {
+        state.posts = action.payload.reverse();
+      })
+      .addCase(deletePost.rejected, (state) => {
+        state.error = "can not delete post";
       });
   },
 });
