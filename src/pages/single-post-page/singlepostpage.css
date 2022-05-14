@@ -7,23 +7,27 @@
   box-shadow: var(--post-card-box-shadow);
 }
 
-.input-post-btn{
-    width: 23rem;
-    display: flex;
-    gap: 1rem;
-    justify-content: space-between;
-    flex-direction: row;
+.input-post-btn {
+  width: 23rem;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  flex-direction: row;
 }
 
-.comment-input{
-    width:100%;
-    border: none;
-    padding: 5px;
+.comment-input {
+  width: 100%;
+  border: none;
+  padding: 5px;
 }
 
-.comment-input:focus{
-    border:none;
-    outline: none;
+.comment-input:focus {
+  border: none;
+  outline: none;
 }
 
-
+.comments-section {
+  gap: 1rem;
+  display:flex;
+  flex-direction: column;
+}
