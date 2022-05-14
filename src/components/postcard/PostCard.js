@@ -1,15 +1,23 @@
-import React from "react";
+import { React, useState } from "react";
 import { useDispatch } from "react-redux";
 import { isPostLiked } from "../../features";
 import { useAuth } from "../../features/auth/authSlice";
-import { addLikeToPost, removeLikedPost } from "../../features/posts/postSlice";
+import {
+  addLikeToPost,
+  removeLikedPost,
+  usePosts,
+  setEditPostMode
+} from "../../features/posts/postSlice";
+import { AddPostModal } from "../../modals";
 
 export function PostCard({ post }) {
+  const [showModal, setShowModal] = useState(false);
+  const { isPostInEditMode } = usePosts();
   const { user } = useAuth();
   console.log(post.username, user.username);
   const dispatch = useDispatch();
   const isPostAlreadyLiked = isPostLiked(user, post.likes);
-  console.log(isPostAlreadyLiked);
+  console.log(isPostAlreadyLiked,isPostInEditMode);
   const likePost = (id) => {
     if (!isPostAlreadyLiked) {
       dispatch(addLikeToPost(id));
@@ -17,8 +25,20 @@ export function PostCard({ post }) {
       dispatch(removeLikedPost(id));
     }
   };
+  const handleEditPost = (post) => {
+    setShowModal(true);
+    dispatch(setEditPostMode(true));
+  };
   return (
     <div className="post">
+      {showModal && (
+        <AddPostModal
+          showModal={showModal}
+          setShowModal={setShowModal}
+          isPostInEditMode={isPostInEditMode}
+          postId={post._id}
+        />
+      )}
       <div className="post-user-detail">
         <img
           className="avatar"
@@ -58,7 +78,10 @@ export function PostCard({ post }) {
 
         {post.username === user.username ? (
           <div className="edit-delete-bookmark">
-            <button className="add-post-footer-btn">
+            <button
+              className="add-post-footer-btn"
+              onClick={() => handleEditPost()}
+            >
               <span class="material-symbols-outlined">edit</span>
             </button>
             <button className="add-post-footer-btn">
