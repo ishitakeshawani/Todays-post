@@ -27,7 +27,7 @@ export const posts = [
     content:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
     likes: {
-      likeCount: 1,
+      likeCount: 0,
       likedBy: [],
       dislikedBy: [],
     },

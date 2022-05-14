@@ -17,6 +17,7 @@ export function PostCard({ post }) {
   const { user } = useAuth();
   console.log(post.username, user.username);
   const dispatch = useDispatch();
+
   const isPostAlreadyLiked = isPostLiked(user, post.likes);
 
   const likePost = (id) => {
@@ -24,6 +25,7 @@ export function PostCard({ post }) {
       dispatch(addLikeToPost(id));
     } else {
       dispatch(removeLikedPost(id));
+      setChangeColor(false);
     }
   };
   const handleEditPost = (post) => {
@@ -64,13 +66,17 @@ export function PostCard({ post }) {
         <div className="like-comment">
           <div className="like-count-section">
             <button
-              className="add-post-footer-btn"
+              className={
+                isPostAlreadyLiked
+                  ? "add-post-footer-btn-blue"
+                  : "add-post-footer-btn"
+              }
               onClick={() => likePost(post._id)}
             >
               {isPostAlreadyLiked ? (
-                <span class="material-symbols-sharp">favorite</span>
+                <span className="material-symbols-sharp">favorite</span>
               ) : (
-                <span class="material-symbols-outlined">favorite</span>
+                <span className="material-symbols-outlined">favorite</span>
               )}
             </button>
             <span>{post.likes?.likeCount} </span>
