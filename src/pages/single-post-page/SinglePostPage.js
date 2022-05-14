@@ -1,14 +1,23 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { NavBar, RightSection, PostCard } from "../../components";
 import { NavLink, useParams } from "react-router-dom";
 import { usePosts } from "../../features/posts/postSlice";
 import "./singlepostpage.css";
+import { addComment } from "../../features/posts/postSlice";
+import { useDispatch } from "react-redux";
 
 export function SinglePostPage() {
   const [isLoading, setIsLoading] = useState(false);
   const { posts } = usePosts();
+  const dispatch = useDispatch();
+  const [commentText, setCommentText] = useState("");
   const { postId } = useParams();
   const post = posts.find((post) => post._id === postId);
+
+  const addCommentToPost = (postId) => {
+    dispatch(addComment({ postId, comment: commentText }));
+    setCommentText((prevComment) => ({ ...prevComment, comment: "" }));
+  };
 
   return (
     <div className="homepage">
@@ -49,10 +58,49 @@ export function SinglePostPage() {
                   />
                 </div>
                 <div className="input-post-btn">
-                  <input type="text" autoFocus className="comment-input" placeholder="Write your comment here.." />
-                  <button className="btn add-post-btn">Post</button>
+                  <input
+                    type="text"
+                    autoFocus
+                    value={commentText.comment}
+                    className="comment-input"
+                    onChange={(e) =>
+                      setCommentText((prevComment) => ({
+                        ...prevComment,
+                        comment: e.target.value,
+                      }))
+                    }
+                    placeholder="Write your comment here.."
+                  />
+                  <button
+                    className="btn add-post-btn"
+                    onClick={() => addCommentToPost(postId)}
+                  >
+                    Post
+                  </button>
                 </div>
               </div>
+              {post.comments.length > 0 &&
+                post.comments.map((post) => (
+                  <div className="post">
+                    <div className="post-user-detail">
+                      <img
+                        className="avatar"
+                        src="https://i.pravatar.cc/30"
+                        alt="profile avatar"
+                      />
+                      <div className="user-name-time">
+                        <div className="profilename">
+                          {post.firstName} {post.lastName}
+                        </div>
+                        <div className="username-date">
+                          <div className="username">@{post.username}</div>
+                          <div className="post-date">• {post.createdAt}</div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="post-text">{post.comment}</div>
+                  </div>
+                ))}
             </div>
           </div>
         </div>

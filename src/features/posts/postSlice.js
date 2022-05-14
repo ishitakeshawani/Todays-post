@@ -27,6 +27,21 @@ export const getAllPosts = createAsyncThunk("posts/getAllPosts", async () => {
   }
 });
 
+export const addComment = createAsyncThunk(
+  "posts/addComment",
+  async ({ postId, comment }) => {
+    try {
+      const { data: posts } = await axios.post(`/api/posts/comment/${postId}`, {
+        comment,
+      });
+      console.log(posts);
+      return posts;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
 export const addLikeToPost = createAsyncThunk(
   "posts/addLikeToPost",
   async (postId) => {
@@ -144,6 +159,9 @@ const postSlice = createSlice({
       })
       .addCase(deletePost.rejected, (state) => {
         state.error = "can not delete post";
+      })
+      .addCase(addComment.fulfilled, (state, action) => {
+        state.posts = action.payload.posts.reverse();
       });
   },
 });
