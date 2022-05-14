@@ -1,11 +1,10 @@
 import React from "react";
-// import { addPostShowModal } from "../../pages/home-page/HomePage";
 import { NavLink } from "react-router-dom";
 
 export function LeftSection({ addPostShowModal, showModal, setShowModal }) {
   return (
     <div className="left-section">
-      <NavLink className="link-no-style sidebar-item" to="/">
+      <NavLink className="link-no-style sidebar-item" to="/home">
         <span class="material-symbols-outlined">home</span>
         <span>Home</span>
       </NavLink>

@@ -1,5 +1,11 @@
 import "./App.css";
-import { HomePage, LandingPage, LoginPage, SignUpPage } from "./pages";
+import {
+  HomePage,
+  LandingPage,
+  LoginPage,
+  SignUpPage,
+  SinglePostPage,
+} from "./pages";
 import { Routes, Route } from "react-router-dom";
 
 function App() {
@@ -10,6 +16,7 @@ function App() {
         <Route path="/home" element={<HomePage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LoginPage />} />
+        <Route path="/post/:postId" element={<SinglePostPage />} />
       </Routes>
     </div>
   );

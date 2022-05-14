@@ -1,6 +1,6 @@
 import React from "react";
 
-export default function RightSection() {
+export function RightSection() {
   return (
     <div className="right-section">
       <div className="right-section-title">Who to follow?</div>

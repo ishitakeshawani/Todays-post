@@ -4,8 +4,7 @@ import "./homepage.css";
 import { AddPostModal } from "../../modals";
 import { usePosts, getAllPosts } from "../../features/posts/postSlice";
 import { useDispatch } from "react-redux";
-import { LeftSection, PostCard } from "../../components";
-import RightSection from "../../components/right-section/RightSection";
+import { LeftSection, PostCard, RightSection } from "../../components";
 
 export function HomePage() {
   const [showModal, setShowModal] = useState(false);
