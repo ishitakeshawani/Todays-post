@@ -6,7 +6,8 @@ import {
   addLikeToPost,
   removeLikedPost,
   usePosts,
-  setEditPostMode
+  setEditPostMode,
+  deletePost,
 } from "../../features/posts/postSlice";
 import { AddPostModal } from "../../modals";
 
@@ -17,7 +18,7 @@ export function PostCard({ post }) {
   console.log(post.username, user.username);
   const dispatch = useDispatch();
   const isPostAlreadyLiked = isPostLiked(user, post.likes);
-  console.log(isPostAlreadyLiked,isPostInEditMode);
+
   const likePost = (id) => {
     if (!isPostAlreadyLiked) {
       dispatch(addLikeToPost(id));
@@ -28,6 +29,9 @@ export function PostCard({ post }) {
   const handleEditPost = (post) => {
     setShowModal(true);
     dispatch(setEditPostMode(true));
+  };
+  const handleDeletePost = (postId) => {
+    dispatch(deletePost(postId));
   };
   return (
     <div className="post">
@@ -84,7 +88,10 @@ export function PostCard({ post }) {
             >
               <span class="material-symbols-outlined">edit</span>
             </button>
-            <button className="add-post-footer-btn">
+            <button
+              className="add-post-footer-btn"
+              onClick={() => handleDeletePost(post._id)}
+            >
               <span class="material-symbols-outlined">delete</span>
             </button>
             <button className="add-post-footer-btn">
