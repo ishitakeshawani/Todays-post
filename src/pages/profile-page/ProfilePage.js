@@ -1,8 +1,10 @@
 import { React, useState, useEffect } from "react";
 import { LeftSection, RightSection, NavBar } from "../../components";
+import { EditProfileModal } from "../../modals";
 import "./profilepage.css";
 
 export const ProfilePage = () => {
+  const [showModal, setShowModal] = useState(false);
   return (
     <div className="homepage">
       <NavBar />
@@ -46,12 +48,20 @@ export const ProfilePage = () => {
               </div>
             </div>
             <div className="profile-right">
-              <button className="btn profile-btn">Edit Profile</button>
+              <button
+                className="btn profile-btn"
+                onClick={() => setShowModal(true)}
+              >
+                Edit Profile
+              </button>
               <button className="btn profile-btn">Logout</button>
             </div>
           </div>
         </div>
       </div>
+      {showModal && (
+        <EditProfileModal showModal={showModal} setShowModal={setShowModal} />
+      )}
     </div>
   );
 };
