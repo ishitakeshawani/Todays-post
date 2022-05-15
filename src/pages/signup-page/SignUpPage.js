@@ -32,6 +32,7 @@ export function SignUpPage() {
         confirmPassword: "",
         firstName: "",
         lastName: "",
+        username: ""
       });
       navigate("/home");
     }
