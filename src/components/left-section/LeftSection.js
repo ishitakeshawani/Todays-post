@@ -1,7 +1,10 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../../features/auth/authSlice";
 
 export function LeftSection({ addPostShowModal, showModal, setShowModal }) {
+  const { user } = useAuth();
+  const userName = user.username;
   return (
     <div className="left-section">
       <NavLink className="link-no-style sidebar-item" to="/home">
@@ -20,7 +23,10 @@ export function LeftSection({ addPostShowModal, showModal, setShowModal }) {
         <span class="material-symbols-outlined">notifications</span>
         <span>Notifications</span>
       </NavLink>
-      <NavLink className="link-no-style sidebar-item" to="/explore">
+      <NavLink
+        className="link-no-style sidebar-item"
+        to={`/profile/${userName}`}
+      >
         <span class="material-symbols-outlined">account_circle</span>
         <span>Profile</span>
       </NavLink>

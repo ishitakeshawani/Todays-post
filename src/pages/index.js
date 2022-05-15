@@ -4,3 +4,4 @@ export { SignUpPage } from "./signup-page/SignUpPage";
 export { LoginPage } from "./login-page/LoginPage";
 export { doValidate } from "./signup-page/utiils";
 export { SinglePostPage } from "./single-post-page/SinglePostPage";
+export { ProfilePage } from "./profile-page/ProfilePage";
