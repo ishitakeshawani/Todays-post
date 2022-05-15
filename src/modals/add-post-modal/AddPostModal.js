@@ -25,8 +25,8 @@ export function AddPostModal({ showModal, setShowModal, isPostInEditMode, postId
     }
   };
   return (
-    <div id="myModal" class="modal">
-      <div class="">
+    <div id="myModal" className="modal">
+      <div>
         <div className="add-post-card">
           <div className="profile-input">
             <img

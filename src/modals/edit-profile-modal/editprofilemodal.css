@@ -1,0 +1,37 @@
+.add-post-card-edit-profile {
+  width: 23rem;
+  height: fit-content;
+  padding: 1rem;
+  border-radius: 5px;
+  background: var(--white);
+  box-shadow: var(--post-card-box-shadow);
+  display: flex;
+  flex-direction: column;
+  width:20rem;
+  justify-content:center;
+  gap: 0.4rem;
+}
+
+.profile-image-add {
+  display: flex;
+  gap: 0.7rem;
+}
+
+.profile-name-user-name {
+  color: var(--blue);
+}
+
+.profile-name-user {
+  display: flex;
+  gap: 0.7rem;
+}
+
+.input-website{
+  width:100%;
+}
+
+.profile-btn-section{
+  padding:0.7rem 0.7rem 0.7rem 0;
+  display: flex;
+  gap: 1rem;
+}
