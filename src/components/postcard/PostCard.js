@@ -17,6 +17,8 @@ export function PostCard({ post }) {
   const [showModal, setShowModal] = useState(false);
   const { isPostInEditMode } = usePosts();
   const { user } = useAuth();
+  const userName = user.username;
+  const userId = user._id;
   const dispatch = useDispatch();
 
   const isPostAlreadyLiked = isPostLiked(user, post.likes);
@@ -48,9 +50,15 @@ export function PostCard({ post }) {
       )}
       <div className="post-user-detail">
         <img
-          className="avatar"
-          src="https://i.pravatar.cc/30"
+          className="avatar-img-home"
+          src={`https://ui-avatars.com/api/name=${post?.firstName}${post?.lastName}?background=0D8ABC&color=fff`}
           alt="profile avatar"
+          onClick={() =>
+            post.username === userName
+              ? navigate(`/profile/${userId}`)
+              : navigate(`/profile/${post.userId}`)
+          }
+          title={post.username}
         />
         <div className="user-name-time">
           <div className="profilename">
