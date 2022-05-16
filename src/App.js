@@ -18,7 +18,7 @@ function App() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/post/:postId" element={<SinglePostPage />} />
-        <Route path="/profile/:userName" element={<ProfilePage />} />
+        <Route path="/profile/:userId" element={<ProfilePage />} />
       </Routes>
     </div>
   );

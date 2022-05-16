@@ -1,7 +1,10 @@
-import React from "react";
+import { React, useState } from "react";
 import "./editprofilemodal.css";
 
-export function EditProfileModal({ showModal, setShowModal }) {
+export function EditProfileModal({ showModal, setShowModal, userData }) {
+  const [userWebsite, setUserWebsite] = useState("");
+  const [userBio, setUserBio] = useState("");
+  console.log(userWebsite, userBio);
   return (
     <div className="modal">
       <div>
@@ -16,19 +19,35 @@ export function EditProfileModal({ showModal, setShowModal }) {
           </div>
           <div className="profile-name-user">
             <div className="profile-title-name">Name:</div>
-            <div className="profile-name-user-name">Ishita</div>
+            <div className="profile-name-user-name">
+              {userData.firstName} {userData.lastName}
+            </div>
           </div>
           <div className="profile-name-user">
             <div className="profile-title-name">Username:</div>
-            <div className="profile-name-user-name">Ishita</div>
+            <div className="profile-name-user-name">{userData.username}</div>
           </div>
           <div className="input-website-link">
             <div className="website-link-title">Website link:</div>
-            <input type="text" className="input-website"/>
+            <input
+              type="text"
+              className="input-website"
+              required
+              onChange={(e) =>
+                setUserWebsite((prev) => ({ ...prev, link: e.target.value }))
+              }
+            />
           </div>
           <div className="user-bio-input">
             <div className="user-bio-title">Bio:</div>
-            <textarea type="text" className="input-website"></textarea>
+            <textarea
+              type="text"
+              className="input-website"
+              required
+              onChange={(e) =>
+                setUserBio((prev) => ({ ...prev, bio: e.target.value }))
+              }
+            ></textarea>
           </div>
           <div className="profile-btn-section">
             <button

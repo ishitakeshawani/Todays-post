@@ -4,7 +4,7 @@ import { useAuth } from "../../features/auth/authSlice";
 
 export function LeftSection({ addPostShowModal, showModal, setShowModal }) {
   const { user } = useAuth();
-  const userName = user.username;
+  const userId = user._id;
   return (
     <div className="left-section">
       <NavLink className="link-no-style sidebar-item" to="/home">
@@ -25,7 +25,7 @@ export function LeftSection({ addPostShowModal, showModal, setShowModal }) {
       </NavLink>
       <NavLink
         className="link-no-style sidebar-item"
-        to={`/profile/${userName}`}
+        to={`/profile/${userId}`}
       >
         <span class="material-symbols-outlined">account_circle</span>
         <span>Profile</span>
