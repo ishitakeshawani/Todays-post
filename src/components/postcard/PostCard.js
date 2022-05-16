@@ -53,11 +53,7 @@ export function PostCard({ post }) {
           className="avatar-img-home"
           src={`https://ui-avatars.com/api/name=${post?.firstName}${post?.lastName}?background=0D8ABC&color=fff`}
           alt="profile avatar"
-          onClick={() =>
-            post.username === userName
-              ? navigate(`/profile/${userId}`)
-              : navigate(`/profile/${post.userId}`)
-          }
+          onClick={() => navigate(`/profile/${post.userId}`)}
           title={post.username}
         />
         <div className="user-name-time">
