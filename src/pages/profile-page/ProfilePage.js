@@ -1,7 +1,8 @@
 import { React, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { LeftSection, RightSection, NavBar } from "../../components";
+import { LeftSection, RightSection, NavBar, PostCard } from "../../components";
+import { getAllPostOfUser } from "../../features";
 import { usePosts } from "../../features/posts/postSlice";
 import { getUserById, useProfile } from "../../features/profile/profileSlice";
 import { EditProfileModal } from "../../modals";
@@ -11,12 +12,14 @@ export const ProfilePage = () => {
   const { userId } = useParams();
   const [showModal, setShowModal] = useState(false);
   const dispatch = useDispatch();
-
+  const { posts } = usePosts();
+  console.log(posts)
   useEffect(() => {
     dispatch(getUserById(userId));
-  }, [userId,dispatch]);
+  }, [userId, dispatch]);
   const { userData, isLoading } = useProfile();
   console.log(userData, userId);
+  const postsList = getAllPostOfUser(posts, userId);
 
   return (
     <div className="homepage">
@@ -44,7 +47,9 @@ export const ProfilePage = () => {
                   <div className="user-bio">{userData?.bio}</div>
                   <div className="website">
                     <span className="website-title">Website:</span>{" "}
-                    <a href={userData?.website} target="_blank">{userData?.website}</a>
+                    <a href={userData?.website} target="_blank">
+                      {userData?.website}
+                    </a>
                   </div>
                 </div>
                 <div className="posts-follows-number">
@@ -76,12 +81,24 @@ export const ProfilePage = () => {
                 <button className="btn profile-btn">Logout</button>
               </div>
             </div>
+            <div className="recent-posts-section">
+              <div className="recent-posts-title">Recent Posts</div>
+              <div className="posts-at-profile">
+                {postsList.length > 0
+                  ? postsList.map((post) => <PostCard post={post} />)
+                  : "You have not post anything."}
+              </div>
+            </div>
           </div>
         )}
       </div>
 
       {showModal && (
-        <EditProfileModal showModal={showModal} setShowModal={setShowModal} userData={userData} />
+        <EditProfileModal
+          showModal={showModal}
+          setShowModal={setShowModal}
+          userData={userData}
+        />
       )}
     </div>
   );

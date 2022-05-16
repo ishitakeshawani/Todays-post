@@ -78,3 +78,19 @@
 .website a {
   color: var(--blue);
 }
+
+.recent-posts-section {
+  height: fit-content;
+  display: flex;
+  margin: 1rem;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.posts-at-profile {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}
