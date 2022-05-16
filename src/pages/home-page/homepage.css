@@ -132,7 +132,6 @@ body {
 }
 
 .add-post-card-footer-left {
-  margin-left: 1.9rem;
   display: flex;
   gap: 0.8rem;
 }

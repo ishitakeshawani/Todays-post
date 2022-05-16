@@ -16,8 +16,8 @@ export function PostCard({ post }) {
   const [showModal, setShowModal] = useState(false);
   const { isPostInEditMode } = usePosts();
   const { user } = useAuth();
-  const userName = user.username;
-  const userId = user._id;
+  const userName = user?.username;
+  const userId = user?._id;
   const dispatch = useDispatch();
 
   const isPostAlreadyLiked = isPostLiked(user, post.likes);

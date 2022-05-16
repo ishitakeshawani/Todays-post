@@ -4,7 +4,12 @@ import { useAuth } from "../../features/auth/authSlice";
 import { createPost, editPost } from "../../features/posts/postSlice";
 import "./addpostmodal.css";
 
-export function AddPostModal({ showModal, setShowModal, isPostInEditMode, postId }) {
+export function AddPostModal({
+  showModal,
+  setShowModal,
+  isPostInEditMode,
+  postId,
+}) {
   const [postText, setPostText] = useState("");
   const { user } = useAuth();
   const dispatch = useDispatch();
@@ -19,7 +24,7 @@ export function AddPostModal({ showModal, setShowModal, isPostInEditMode, postId
       content: postText,
     };
     if (isPostInEditMode) {
-      dispatch(editPost({postData:data,postId}));
+      dispatch(editPost({ postData: data, postId }));
     } else {
       dispatch(createPost(data));
     }
@@ -29,11 +34,6 @@ export function AddPostModal({ showModal, setShowModal, isPostInEditMode, postId
       <div>
         <div className="add-post-card">
           <div className="profile-input">
-            <img
-              className="avatar"
-              src="https://i.pravatar.cc/30"
-              alt="profile avatar"
-            />
             <textarea
               name="post-input"
               id="post-input"
