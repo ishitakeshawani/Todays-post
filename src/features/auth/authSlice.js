@@ -1,5 +1,5 @@
 import axios from "axios";
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk, createAction } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
 
 const user = JSON.parse(localStorage.getItem("user"));
@@ -41,12 +41,20 @@ export const login = createAsyncThunk(
   }
 );
 
+export const logout = createAction("auth/logout");
+
 export const authSlice = createSlice({
   name: "auth",
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(logout, (state) => {
+        state.user = null;
+        localStorage.removeItem("token");
+        localStorage.removeItem("user");
+        delete axios.defaults.headers.common["authorization"];
+      })
       .addCase(signup.pending, (state) => {
         state.isLoading = true;
         state.error = "";

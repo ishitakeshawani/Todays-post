@@ -5,7 +5,7 @@ import { useAuth } from "../../features/auth/authSlice";
 
 export function NavBar() {
   const { user } = useAuth();
-  const userId = user._id;
+  const userId = user?._id;
   const navigate = useNavigate();
   return (
     <nav className="navbar semibold-font-weight">

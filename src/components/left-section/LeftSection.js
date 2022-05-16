@@ -3,8 +3,9 @@ import { NavLink } from "react-router-dom";
 import { useAuth } from "../../features/auth/authSlice";
 
 export function LeftSection({ addPostShowModal, showModal, setShowModal }) {
+  console.log(addPostShowModal)
   const { user } = useAuth();
-  const userId = user._id;
+  const userId = user?._id;
   return (
     <div className="left-section">
       <NavLink className="link-no-style sidebar-item" to="/home">
@@ -32,7 +33,7 @@ export function LeftSection({ addPostShowModal, showModal, setShowModal }) {
       </NavLink>
       <button
         className="link-no-style sidebar-item btn add-post-btn-sidebar"
-        onClick={addPostShowModal}
+        onClick={() =>addPostShowModal}
       >
         <span>Add new post</span>
       </button>

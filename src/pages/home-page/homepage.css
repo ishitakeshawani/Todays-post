@@ -122,7 +122,6 @@ body {
 }
 
 .add-post-card-footer-left {
-  margin-left: 1.9rem;
   display: flex;
   gap: 0.8rem;
 }
@@ -142,7 +141,6 @@ body {
   cursor: pointer;
   color: var(--blue);
 }
-
 
 .add-post-footer-btn span {
   font-size: 1.4rem;

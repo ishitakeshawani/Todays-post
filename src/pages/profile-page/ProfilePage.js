@@ -1,19 +1,28 @@
 import { React, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
 import { LeftSection, RightSection, NavBar, PostCard } from "../../components";
 import { getAllPostOfUser } from "../../features";
+import { useAuth, logout } from "../../features/auth/authSlice";
 import { usePosts } from "../../features/posts/postSlice";
 import { getUserById, useProfile } from "../../features/profile/profileSlice";
 import { EditProfileModal } from "../../modals";
 import "./profilepage.css";
 
 export const ProfilePage = () => {
+  const navigate = useNavigate();
   const { userId } = useParams();
   const [showModal, setShowModal] = useState(false);
+  const [showAddPostModal, setShowAddPostModal] = useState(false);
   const dispatch = useDispatch();
   const { posts } = usePosts();
-  console.log(posts)
+  const { user } = useAuth();
+  const currentUserId = user._id;
+  const addPostShowModal = () => {
+    console.log("clicked")
+    setShowAddPostModal(!showAddPostModal);
+  };
+  console.log(posts, user);
   useEffect(() => {
     dispatch(getUserById(userId));
   }, [userId, dispatch]);
@@ -25,7 +34,7 @@ export const ProfilePage = () => {
     <div className="homepage">
       <NavBar />
       <div className="homepage-section">
-        <LeftSection />
+        <LeftSection addPostShowModal={addPostShowModal} />
         {isLoading && userData != null ? (
           <p>Loading..</p>
         ) : (
@@ -74,11 +83,23 @@ export const ProfilePage = () => {
               <div className="profile-right">
                 <button
                   className="btn profile-btn"
-                  onClick={() => setShowModal(true)}
+                  onClick={() =>
+                    currentUserId === userId ? setShowModal(true) : ""
+                  }
                 >
-                  Edit Profile
+                  {currentUserId === userId ? "Edit Profile" : "Follow"}
                 </button>
-                <button className="btn profile-btn">Logout</button>
+                {currentUserId === userId && (
+                  <button
+                    className="btn profile-btn"
+                    onClick={() => {
+                      dispatch(logout());
+                      navigate("/login");
+                    }}
+                  >
+                    Logout
+                  </button>
+                )}
               </div>
             </div>
             <div className="recent-posts-section">
