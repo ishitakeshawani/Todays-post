@@ -14,7 +14,7 @@ export const ProfilePage = () => {
 
   useEffect(() => {
     dispatch(getUserById(userId));
-  }, [userId, dispatch]);
+  }, [userId,dispatch]);
   const { userData, isLoading } = useProfile();
   console.log(userData, userId);
 
@@ -23,7 +23,7 @@ export const ProfilePage = () => {
       <NavBar />
       <div className="homepage-section">
         <LeftSection />
-        {isLoading ? (
+        {isLoading && userData != null ? (
           <p>Loading..</p>
         ) : (
           <div className="profile-middle-section">
@@ -33,18 +33,18 @@ export const ProfilePage = () => {
                   <div className="profile-picture">
                     <img
                       className="avatar"
-                      src="https://i.pravatar.cc/150"
+                      src={`https://ui-avatars.com/api/name=${userData?.firstName}${userData?.lastName}?background=0D8ABC&color=fff`}
                       alt="profile avatar"
                     />
                   </div>
                   <div className="user-first-last-names">
-                    {userData.firstName} {userData.lastName}
+                    {userData?.firstName} {userData?.lastName}
                   </div>
-                  <div className="username">@{userData.username}</div>
-                  <div className="user-bio">{userData.bio}</div>
+                  <div className="username">@{userData?.username}</div>
+                  <div className="user-bio">{userData?.bio}</div>
                   <div className="website">
                     <span className="website-title">Website:</span>{" "}
-                    <a href="http://">{userData.website}</a>
+                    <a href={userData?.website} target="_blank">{userData?.website}</a>
                   </div>
                 </div>
                 <div className="posts-follows-number">
@@ -54,13 +54,13 @@ export const ProfilePage = () => {
                   </div>
                   <div className="user-posts">
                     <div className="user-posts num">
-                      {userData.followers.length}
+                      {userData?.followers.length}
                     </div>
                     <div className="user-posts-title">Followers</div>
                   </div>
                   <div className="user-posts">
                     <div className="user-posts num">
-                      {userData.following.length}
+                      {userData?.following.length}
                     </div>
                     <div className="user-posts-title">Following</div>
                   </div>
