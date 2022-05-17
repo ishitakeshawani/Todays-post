@@ -8,7 +8,7 @@
 }
 
 .input-post-btn {
-  width: 23rem;
+  width: 100%;
   display: flex;
   gap: 1rem;
   justify-content: space-between;
@@ -28,6 +28,6 @@
 
 .comments-section {
   gap: 1rem;
-  display:flex;
+  display: flex;
   flex-direction: column;
 }

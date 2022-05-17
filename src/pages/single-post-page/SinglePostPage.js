@@ -19,6 +19,13 @@ export function SinglePostPage() {
     setCommentText((prevComment) => ({ ...prevComment, comment: "" }));
   };
 
+  const handleCommentChange = (e) => {
+    setCommentText((prevComment) => ({
+      ...prevComment,
+      comment: e.target.value,
+    }));
+  };
+
   return (
     <div className="homepage">
       <NavBar />
@@ -63,12 +70,7 @@ export function SinglePostPage() {
                     autoFocus
                     value={commentText.comment}
                     className="comment-input"
-                    onChange={(e) =>
-                      setCommentText((prevComment) => ({
-                        ...prevComment,
-                        comment: e.target.value,
-                      }))
-                    }
+                    onChange={(e) => handleCommentChange(e)}
                     placeholder="Write your comment here.."
                   />
                   <button
@@ -80,27 +82,29 @@ export function SinglePostPage() {
                 </div>
               </div>
               {post.comments.length > 0 &&
-                post.comments.map((post) => (
-                  <div className="post">
-                    <div className="post-user-detail">
-                      <img
-                        className="avatar"
-                        src="https://i.pravatar.cc/30"
-                        alt="profile avatar"
-                      />
-                      <div className="user-name-time">
-                        <div className="profilename">
-                          {post.firstName} {post.lastName}
-                        </div>
-                        <div className="username-date">
-                          <div className="username">@{post.username}</div>
-                          <div className="post-date">• {post.createdAt}</div>
+                post.comments.map(
+                  ({ firstName, lastName, username, createdAt, comment }) => (
+                    <div className="post">
+                      <div className="post-user-detail">
+                        <img
+                          className="avatar"
+                          src="https://i.pravatar.cc/30"
+                          alt="profile avatar"
+                        />
+                        <div className="user-name-time">
+                          <div className="profilename">
+                            {firstName} {lastName}
+                          </div>
+                          <div className="username-date">
+                            <div className="username">@{username}</div>
+                            <div className="post-date">• {createdAt}</div>
+                          </div>
                         </div>
                       </div>
+                      <div className="post-text">{comment}</div>
                     </div>
-                    <div className="post-text">{post.comment}</div>
-                  </div>
-                ))}
+                  )
+                )}
             </div>
           </div>
         </div>
