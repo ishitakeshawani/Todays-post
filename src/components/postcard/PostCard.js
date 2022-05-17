@@ -10,10 +10,9 @@ import {
   deletePost,
 } from "../../features/posts/postSlice";
 import { AddPostModal } from "../../modals";
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export function PostCard({ post }) {
-  const navigate = useNavigate();
   const [showModal, setShowModal] = useState(false);
   const { isPostInEditMode } = usePosts();
   const { user } = useAuth();
@@ -22,13 +21,11 @@ export function PostCard({ post }) {
   const isPostAlreadyLiked = isPostLiked(user, post.likes);
 
   const likePost = (id) => {
-    if (!isPostAlreadyLiked) {
-      dispatch(addLikeToPost(id));
-    } else {
-      dispatch(removeLikedPost(id));
-      setChangeColor(false);
-    }
+    !isPostAlreadyLiked
+      ? dispatch(addLikeToPost(id))
+      : (dispatch(removeLikedPost(id)), setChangeColor(false));
   };
+
   const handleEditPost = (post) => {
     setShowModal(true);
     dispatch(setEditPostMode(true));
@@ -36,6 +33,7 @@ export function PostCard({ post }) {
   const handleDeletePost = (postId) => {
     dispatch(deletePost(postId));
   };
+
   return (
     <div className="post">
       {showModal && (
@@ -82,14 +80,9 @@ export function PostCard({ post }) {
             </button>
             <span>{post.likes?.likeCount} </span>
           </div>
-          <button
-            className="add-post-footer-btn"
-            onClick={() => {
-              navigate(`/post/${post._id}`);
-            }}
-          >
+          <Link className="add-post-footer-btn" to={`/post/${post._id}`}>
             <span class="material-symbols-outlined">comment</span>
-          </button>
+          </Link>
         </div>
 
         {post.username === user.username ? (
