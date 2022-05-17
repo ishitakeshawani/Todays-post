@@ -12,7 +12,6 @@ export function AddPostModal({ showModal, setShowModal, isPostInEditMode, postId
   const handleAddPost = (e) => {
     e.preventDefault();
     const { firstName, lastName, username } = user;
-    console.log(user, firstName, lastName, username);
     const data = {
       firstName,
       lastName,
