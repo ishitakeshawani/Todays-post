@@ -3,7 +3,11 @@ import { editUserData } from "../../features/profile/profileSlice";
 import "./editprofilemodal.css";
 import { useDispatch } from "react-redux";
 
-export function EditProfileModal({ showModal, setShowModal, userData }) {
+export function EditProfileModal({
+  showEditPostModal,
+  setShowEditPostModal,
+  userData,
+}) {
   const [userWebsite, setUserWebsite] = useState(null);
   const [userBio, setUserBio] = useState(null);
   const dispatch = useDispatch();
@@ -23,7 +27,7 @@ export function EditProfileModal({ showModal, setShowModal, userData }) {
         <div className="add-post-card-edit-profile">
           <div className="profile-image-add">
             <div className="profile-image-title">Profile picture:</div>
-            <input type="file" accept="image/*" title=" "/>
+            <input type="file" accept="image/*" title=" " />
           </div>
           <div className="profile-name-user">
             <div className="profile-title-name">Name:</div>
@@ -62,7 +66,7 @@ export function EditProfileModal({ showModal, setShowModal, userData }) {
               className="btn add-post-btn"
               onClick={(e) => {
                 editProfile();
-                setShowModal(!showModal);
+                setShowEditPostModal(!showEditPostModal);
               }}
             >
               submit
@@ -70,8 +74,7 @@ export function EditProfileModal({ showModal, setShowModal, userData }) {
             <button
               className="btn add-post-btn"
               onClick={(e) => {
-                setShowModal(!showModal);
-                // handleAddPost(e);
+                setShowEditPostModal(!showEditPostModal);
               }}
             >
               cancel
