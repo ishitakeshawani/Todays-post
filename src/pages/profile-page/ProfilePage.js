@@ -11,7 +11,7 @@ import {
   unFollowUser,
   useProfile,
 } from "../../features/profile/profileSlice";
-import { EditProfileModal } from "../../modals";
+import { AddPostModal, EditProfileModal } from "../../modals";
 import "./profilepage.css";
 import { isAlreadyFollowing } from "./utils";
 
@@ -19,13 +19,13 @@ export const ProfilePage = () => {
   const navigate = useNavigate();
   const { userId } = useParams();
   const [showModal, setShowModal] = useState(false);
-  const [showAddPostModal, setShowAddPostModal] = useState(false);
+  const [showEditPostModal, setShowEditPostModal] = useState(false);
   const dispatch = useDispatch();
   const { posts } = usePosts();
   const { user } = useAuth();
   const currentUserId = user._id;
   const addPostShowModal = () => {
-    setShowAddPostModal(!showAddPostModal);
+    setShowModal(true);
   };
   useEffect(() => {
     dispatch(getUserById(userId));
@@ -41,12 +41,15 @@ export const ProfilePage = () => {
     }
   };
 
-
   return (
     <div className="homepage">
       <NavBar />
       <div className="homepage-section">
-        <LeftSection addPostShowModal={addPostShowModal} />
+        <LeftSection
+          addPostShowModal={addPostShowModal}
+          showModal={showModal}
+          setShowModal={setShowModal}
+        />
         {isLoading && userData == null ? (
           <p>Loading..</p>
         ) : (
@@ -96,7 +99,7 @@ export const ProfilePage = () => {
                 {currentUserId === userId && (
                   <button
                     className="btn profile-btn"
-                    onClick={() => setShowModal(true)}
+                    onClick={() => setShowEditPostModal(true)}
                   >
                     Edit Profile
                   </button>
@@ -135,11 +138,13 @@ export const ProfilePage = () => {
           </div>
         )}
       </div>
-
       {showModal && (
+        <AddPostModal showModal={showModal} setShowModal={setShowModal} />
+      )}
+      {showEditPostModal && (
         <EditProfileModal
-          showModal={showModal}
-          setShowModal={setShowModal}
+          showEditPostModal={showEditPostModal}
+          setShowEditPostModal={setShowEditPostModal}
           userData={userData}
         />
       )}

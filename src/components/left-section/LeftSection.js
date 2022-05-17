@@ -23,16 +23,15 @@ export function LeftSection({ addPostShowModal, showModal, setShowModal }) {
         <span className="material-symbols-outlined">notifications</span>
         <span>Notifications</span>
       </NavLink>
-      <NavLink
-        className="link-no-style sidebar-item"
-        to={`/profile/${userId}`}
-      >
+      <NavLink className="link-no-style sidebar-item" to={`/profile/${userId}`}>
         <span className="material-symbols-outlined">account_circle</span>
         <span>Profile</span>
       </NavLink>
       <button
         className="link-no-style sidebar-item btn add-post-btn-sidebar"
-        onClick={() =>addPostShowModal}
+        onClick={() => {
+          addPostShowModal();
+        }}
       >
         <span>Add new post</span>
       </button>
