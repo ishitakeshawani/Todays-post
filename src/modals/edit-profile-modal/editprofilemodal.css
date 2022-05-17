@@ -28,10 +28,17 @@
 
 .input-website{
   width:100%;
+  padding: 7px;
 }
 
 .profile-btn-section{
   padding:0.7rem 0.7rem 0.7rem 0;
   display: flex;
   gap: 1rem;
+}
+
+.input-website-link, .user-bio-input{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
