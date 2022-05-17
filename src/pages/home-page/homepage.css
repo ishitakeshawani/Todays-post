@@ -15,7 +15,8 @@ body {
   margin-top: 1rem;
   height: 100vh;
   justify-content: center;
-  width: 70vw;
+  width: 90vw;
+  padding: 3rem 0;
 }
 
 .left-section,
@@ -27,13 +28,14 @@ body {
   align-items: flex-start;
   flex-direction: column;
   gap: 1rem;
+  width: 29rem;
   margin: 1rem 1rem;
   padding: 0.6rem 0;
   height: 76vh;
 }
 
 .right-section {
-  width: 90vw;
+  width: 40vw;
   padding: 1rem;
 }
 
@@ -45,13 +47,20 @@ body {
   text-align: left;
   gap: 0.7rem;
   margin: 0 1rem;
-  width: 11rem;
+  width: 14rem;
   padding: 0.6rem 0.5rem;
   border-radius: 5px;
   font-size: 1rem;
 }
 
 .sidebar-item:hover {
+  color: var(--blue);
+  cursor: pointer;
+  background: var(--gray);
+}
+
+.active-sidebar-item {
+  font-weight: 500;
   color: var(--blue);
   cursor: pointer;
   background: var(--gray);
@@ -66,7 +75,9 @@ body {
 .middle-section {
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 90%;
+  justify-content: flex-start;
+  align-items: center;
   padding: 1rem;
 }
 
@@ -131,11 +142,23 @@ body {
   border: none;
   border-radius: 0;
   cursor: pointer;
+  color: var(--icon-color);
+}
+
+.add-post-footer-btn-blue {
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  cursor: pointer;
   color: var(--blue);
 }
 
+.add-post-footer-btn span {
+  font-size: 1.4rem;
+}
+
 .add-post-footer-btn:hover {
-  color: var(--black);
+  color: var(--blue);
 }
 
 .post {
@@ -143,7 +166,7 @@ body {
   box-shadow: var(--post-card-box-shadow);
   padding: 1rem;
   border-radius: 5px;
-  width: 27rem;
+  width: 35rem;
 }
 
 .post-user-detail {
@@ -161,7 +184,10 @@ body {
 
 .post-text {
   padding: 0.6rem 0rem 0.6rem 3rem;
-  font-size: 1rem;
+  font-size: 0.99rem;
+  font-weight: 400;
+  line-height: 1.2rem;
+  color: var(--post-text-color);
 }
 
 .like-comment-bookmark-section {
@@ -170,7 +196,8 @@ body {
   padding: 0.1rem 0rem 0.1rem 3rem;
 }
 
-.like-comment {
+.like-comment,
+.edit-delete-bookmark {
   display: flex;
   gap: 0.8rem;
 }
@@ -210,4 +237,13 @@ body {
   border: none;
   padding: 0.5rem 1rem;
   cursor: pointer;
+}
+
+.like-count-section {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: center;
+  align-items: flex-start;
+  color: var(--icon-color);
+  font-size: 1rem;
 }

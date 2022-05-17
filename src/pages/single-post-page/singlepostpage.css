@@ -1,0 +1,33 @@
+.input-comment-section {
+  display: flex;
+  gap: 1rem;
+  background: var(--white);
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: var(--post-card-box-shadow);
+}
+
+.input-post-btn {
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+  justify-content: space-between;
+  flex-direction: row;
+}
+
+.comment-input {
+  width: 100%;
+  border: none;
+  padding: 5px;
+}
+
+.comment-input:focus {
+  border: none;
+  outline: none;
+}
+
+.comments-section {
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+}
