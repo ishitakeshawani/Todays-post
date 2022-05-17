@@ -32,7 +32,7 @@ export function SignUpPage() {
         confirmPassword: "",
         firstName: "",
         lastName: "",
-        username: ""
+        username: "",
       });
       navigate("/home");
     }
@@ -45,7 +45,7 @@ export function SignUpPage() {
           <h4 className="login-title">Signup</h4>
 
           <div className="login-label">
-            <label for="" id="firstname">
+            <label htmlFor="firstname" id="firstname">
               First Name
             </label>
           </div>
@@ -63,13 +63,13 @@ export function SignUpPage() {
             }
           />
           <div className="login-label">
-            <label for="" id="lastname">
+            <label htmlFor="lastname" id="lastname">
               Last Name
             </label>
           </div>
           <input
             type="text"
-            class="login-input"
+            className="login-input"
             value={userData.lastName}
             placeholder="Keshawani"
             required
@@ -81,13 +81,13 @@ export function SignUpPage() {
             }
           />
           <div className="login-label">
-            <label for="" id="lastname">
+            <label htmlFor="username" id="lastname">
               User Name
             </label>
           </div>
           <input
             type="text"
-            class="login-input"
+            className="login-input"
             value={userData.username}
             placeholder="ishita1608"
             required
@@ -100,7 +100,7 @@ export function SignUpPage() {
           />
 
           <div className="login-label">
-            <label for="" id="email">
+            <label htmlFor="email" id="email">
               Email address
             </label>
           </div>
@@ -119,11 +119,11 @@ export function SignUpPage() {
           />
           {error && <p style={{ color: "red" }}>{error}</p>}
           <div>
-            <label for="" className="login-label" id="password">
+            <label htmlFor="password" className="login-label" id="password">
               Password
             </label>
           </div>
-          <div class="login-password">
+          <div className="login-password">
             <input
               type={type}
               className="login-password-input"
@@ -149,7 +149,11 @@ export function SignUpPage() {
           </div>
 
           <div>
-            <label for="" className="login-label" id="confirmpassword">
+            <label
+              htmlFor="confirmpassword"
+              className="login-label"
+              id="confirmpassword"
+            >
               Confirm Password
             </label>
           </div>
@@ -181,7 +185,7 @@ export function SignUpPage() {
           <div className="flex">
             <div>
               <input type="checkbox" name="remember" id="" required />
-              <label for="" className="remember-label" id="tersm">
+              <label htmlFor="conditions" className="remember-label" id="tersm">
                 I accept all Terms & Conditions
               </label>
             </div>

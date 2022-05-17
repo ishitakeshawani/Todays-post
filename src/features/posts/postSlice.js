@@ -34,7 +34,6 @@ export const addComment = createAsyncThunk(
       const { data: posts } = await axios.post(`/api/posts/comment/${postId}`, {
         comment,
       });
-      console.log(posts);
       return posts;
     } catch (error) {
       console.log(error);
@@ -97,7 +96,6 @@ export const deletePost = createAsyncThunk(
     }
   }
 );
-
 
 
 const postSlice = createSlice({

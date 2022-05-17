@@ -5,9 +5,15 @@ import { LeftSection, RightSection, NavBar, PostCard } from "../../components";
 import { getAllPostOfUser } from "../../features";
 import { useAuth, logout } from "../../features/auth/authSlice";
 import { usePosts } from "../../features/posts/postSlice";
-import { getUserById, useProfile } from "../../features/profile/profileSlice";
+import {
+  followUser,
+  getUserById,
+  unFollowUser,
+  useProfile,
+} from "../../features/profile/profileSlice";
 import { EditProfileModal } from "../../modals";
 import "./profilepage.css";
+import { isAlreadyFollowing } from "./utils";
 
 export const ProfilePage = () => {
   const navigate = useNavigate();
@@ -19,23 +25,29 @@ export const ProfilePage = () => {
   const { user } = useAuth();
   const currentUserId = user._id;
   const addPostShowModal = () => {
-    console.log("clicked")
     setShowAddPostModal(!showAddPostModal);
   };
-  console.log(posts, user);
   useEffect(() => {
     dispatch(getUserById(userId));
   }, [userId, dispatch]);
   const { userData, isLoading } = useProfile();
-  console.log(userData, userId);
   const postsList = getAllPostOfUser(posts, userId);
+  const isFollowing = isAlreadyFollowing(userData, currentUserId);
+  const handleFollow = (followUserId) => {
+    if (!isFollowing) {
+      dispatch(followUser(followUserId));
+    } else {
+      dispatch(unFollowUser(followUserId));
+    }
+  };
+
 
   return (
     <div className="homepage">
       <NavBar />
       <div className="homepage-section">
         <LeftSection addPostShowModal={addPostShowModal} />
-        {isLoading && userData != null ? (
+        {isLoading && userData == null ? (
           <p>Loading..</p>
         ) : (
           <div className="profile-middle-section">
@@ -63,7 +75,7 @@ export const ProfilePage = () => {
                 </div>
                 <div className="posts-follows-number">
                   <div className="user-posts">
-                    <div className="user-posts num">1</div>
+                    <div className="user-posts num">{postsList?.length}</div>
                     <div className="user-posts-title">Posts</div>
                   </div>
                   <div className="user-posts">
@@ -81,14 +93,22 @@ export const ProfilePage = () => {
                 </div>
               </div>
               <div className="profile-right">
-                <button
-                  className="btn profile-btn"
-                  onClick={() =>
-                    currentUserId === userId ? setShowModal(true) : ""
-                  }
-                >
-                  {currentUserId === userId ? "Edit Profile" : "Follow"}
-                </button>
+                {currentUserId === userId && (
+                  <button
+                    className="btn profile-btn"
+                    onClick={() => setShowModal(true)}
+                  >
+                    Edit Profile
+                  </button>
+                )}
+                {currentUserId !== userId && (
+                  <button
+                    className="btn profile-btn"
+                    onClick={() => handleFollow(userId)}
+                  >
+                    {isFollowing ? "Following" : "Follow"}
+                  </button>
+                )}
                 {currentUserId === userId && (
                   <button
                     className="btn profile-btn"
@@ -106,7 +126,9 @@ export const ProfilePage = () => {
               <div className="recent-posts-title">Recent Posts</div>
               <div className="posts-at-profile">
                 {postsList.length > 0
-                  ? postsList.map((post) => <PostCard post={post} />)
+                  ? postsList.map((post, index) => (
+                      <PostCard key={index} post={post} />
+                    ))
                   : "You have not post anything."}
               </div>
             </div>
