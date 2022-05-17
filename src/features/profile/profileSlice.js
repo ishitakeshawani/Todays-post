@@ -6,6 +6,8 @@ const initialState = {
   userData: null,
   isLoading: false,
   isInEditMode: false,
+  userFollowing: [],
+  userFollowers: [],
   error: "",
 };
 
@@ -16,7 +18,6 @@ export const getUserById = createAsyncThunk(
       const {
         data: { user },
       } = await axios.get(`/api/users/${userId}`);
-      console.log(user);
       return user;
     } catch (error) {
       console.log(error);
@@ -31,11 +32,43 @@ export const editUserData = createAsyncThunk(
       const {
         data: { user },
       } = await axios.post("/api/users/edit", { userData });
-
-      console.log(userData,user)
       return user;
     } catch (error) {
       console.log(error.response);
+    }
+  }
+);
+
+export const followUser = createAsyncThunk(
+  "profile/followUser",
+  async (followUserId) => {
+    try {
+      const {
+        data: {
+          followUser,
+          user: { followers, following },
+        },
+      } = await axios.post(`/api/users/follow/${followUserId}`);
+      return { followUser, followers, following };
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const unFollowUser = createAsyncThunk(
+  "profile/unFollowUser",
+  async (followUserId) => {
+    try {
+      const {
+        data: {
+          followUser,
+          user: { followers, following },
+        },
+      } = await axios.post(`/api/users/unfollow/${followUserId}`);
+      return { followUser, followers, following };
+    } catch (error) {
+      console.log(error);
     }
   }
 );
@@ -65,6 +98,24 @@ const profileSlice = createSlice({
       })
       .addCase(editUserData.rejected, (state) => {
         state.error = "can not edit data";
+      })
+      .addCase(followUser.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(followUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.userFollowers = action.payload.followers;
+        state.userFollowing = action.payload.following;
+        state.userData = action.payload.followUser;
+      })
+      .addCase(unFollowUser.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(unFollowUser.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.userFollowers = action.payload.followers;
+        state.userFollowing = action.payload.following;
+        state.userData = action.payload.followUser;
       });
   },
 });

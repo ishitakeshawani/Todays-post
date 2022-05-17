@@ -95,21 +95,21 @@ export function PostCard({ post }) {
               className="add-post-footer-btn"
               onClick={() => handleEditPost()}
             >
-              <span class="material-symbols-outlined">edit</span>
+              <span className="material-symbols-outlined">edit</span>
             </button>
             <button
               className="add-post-footer-btn"
               onClick={() => handleDeletePost(post._id)}
             >
-              <span class="material-symbols-outlined">delete</span>
+              <span className="material-symbols-outlined">delete</span>
             </button>
             <button className="add-post-footer-btn">
-              <span class="material-symbols-outlined">bookmark</span>
+              <span className="material-symbols-outlined">bookmark</span>
             </button>
           </div>
         ) : (
           <button className="add-post-footer-btn">
-            <span class="material-symbols-outlined">bookmark</span>
+            <span className="material-symbols-outlined">bookmark</span>
           </button>
         )}
       </div>
