@@ -4,7 +4,7 @@ import "./homepage.css";
 import { AddPostModal } from "../../modals";
 import { usePosts, getAllPosts } from "../../features/posts/postSlice";
 import { useDispatch } from "react-redux";
-import { LeftSection, PostCard, RightSection } from "../../components";
+import { LeftSidebar, PostCard, RightSection } from "../../components";
 
 export function HomePage() {
   const [showModal, setShowModal] = useState(false);
@@ -16,13 +16,12 @@ export function HomePage() {
   useEffect(() => {
     dispatch(getAllPosts());
   }, [dispatch]);
-  console.log(posts);
 
   return (
     <div className="homepage">
       <NavBar />
       <div className="homepage-section">
-        <LeftSection
+        <LeftSidebar
           addPostShowModal={addPostShowModal}
           showModal={showModal}
           setShowModal={setShowModal}

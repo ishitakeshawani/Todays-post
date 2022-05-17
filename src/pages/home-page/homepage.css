@@ -15,7 +15,7 @@ body {
   margin-top: 1rem;
   height: 100vh;
   justify-content: center;
-  width: 70vw;
+  width: 90vw;
   padding: 3rem 0;
 }
 
@@ -28,13 +28,14 @@ body {
   align-items: flex-start;
   flex-direction: column;
   gap: 1rem;
+  width: 29rem;
   margin: 1rem 1rem;
   padding: 0.6rem 0;
   height: 76vh;
 }
 
 .right-section {
-  width: 90vw;
+  width: 40vw;
   padding: 1rem;
 }
 
@@ -46,13 +47,20 @@ body {
   text-align: left;
   gap: 0.7rem;
   margin: 0 1rem;
-  width: 11rem;
+  width: 14rem;
   padding: 0.6rem 0.5rem;
   border-radius: 5px;
   font-size: 1rem;
 }
 
 .sidebar-item:hover {
+  color: var(--blue);
+  cursor: pointer;
+  background: var(--gray);
+}
+
+.active-sidebar-item {
+  font-weight: 500;
   color: var(--blue);
   cursor: pointer;
   background: var(--gray);
@@ -67,7 +75,9 @@ body {
 .middle-section {
   display: flex;
   flex-direction: column;
-  width: 60%;
+  width: 90%;
+  justify-content: flex-start;
+  align-items: center;
   padding: 1rem;
 }
 
@@ -143,7 +153,6 @@ body {
   color: var(--blue);
 }
 
-
 .add-post-footer-btn span {
   font-size: 1.4rem;
 }
@@ -157,7 +166,7 @@ body {
   box-shadow: var(--post-card-box-shadow);
   padding: 1rem;
   border-radius: 5px;
-  width: 27rem;
+  width: 35rem;
 }
 
 .post-user-detail {
