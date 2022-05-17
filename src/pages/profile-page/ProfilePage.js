@@ -1,7 +1,7 @@
 import { React, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
-import { LeftSection, RightSection, NavBar, PostCard } from "../../components";
+import { LeftSidebar, RightSection, NavBar, PostCard } from "../../components";
 import { getAllPostOfUser } from "../../features";
 import { useAuth, logout } from "../../features/auth/authSlice";
 import { usePosts } from "../../features/posts/postSlice";
@@ -45,7 +45,7 @@ export const ProfilePage = () => {
     <div className="homepage">
       <NavBar />
       <div className="homepage-section">
-        <LeftSection
+        <LeftSidebar
           addPostShowModal={addPostShowModal}
           showModal={showModal}
           setShowModal={setShowModal}
@@ -137,6 +137,7 @@ export const ProfilePage = () => {
             </div>
           </div>
         )}
+        <RightSection />
       </div>
       {showModal && (
         <AddPostModal showModal={showModal} setShowModal={setShowModal} />

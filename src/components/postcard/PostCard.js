@@ -10,12 +10,13 @@ import {
   deletePost,
 } from "../../features/posts/postSlice";
 import { AddPostModal } from "../../modals";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export function PostCard({ post }) {
   const [showModal, setShowModal] = useState(false);
   const { isPostInEditMode } = usePosts();
   const { user } = useAuth();
+  const navigate = useNavigate();
   const userName = user?.username;
   const userId = user?._id;
   const dispatch = useDispatch();
