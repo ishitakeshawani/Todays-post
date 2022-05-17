@@ -9,7 +9,7 @@ export function LeftSidebar({
   isSinglePost,
 }) {
   const { user } = useAuth();
-  const userId = user._id;
+  const userId = user?._id;
   const sideBarItems = [
     {
       name: "Home",
