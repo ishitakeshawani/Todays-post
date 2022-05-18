@@ -11,14 +11,12 @@ export function EditProfileModal({
   const [userWebsite, setUserWebsite] = useState(null);
   const [userBio, setUserBio] = useState(null);
   const dispatch = useDispatch();
-  console.log(userWebsite, userBio);
   const editProfile = () => {
     const data = {
       ...userData,
       bio: userBio.bio,
       website: userWebsite.weblink,
     };
-    console.log(data);
     dispatch(editUserData({ userData: data }));
   };
   return (
