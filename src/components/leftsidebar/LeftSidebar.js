@@ -23,7 +23,7 @@ export function LeftSidebar({
     },
     {
       name: "Bookmarks",
-      path: "/bookmarks",
+      path: `/bookmarks/${userId}`,
       iconName: "bookmarks",
     },
     {
@@ -34,8 +34,8 @@ export function LeftSidebar({
   ];
   return (
     <div className="left-section">
-      {sideBarItems.map(({ name, path, iconName }) => (
-        <NavLink
+      {sideBarItems.map(({ name, path, iconName },index) => (
+        <NavLink key={index}
           className={({ isActive }) =>
             `${
               isActive ? "active-sidebar-item" : ""
@@ -43,7 +43,7 @@ export function LeftSidebar({
           }
           to={path}
         >
-          <span class="material-symbols-outlined">{iconName}</span>
+          <span className="material-symbols-outlined">{iconName}</span>
           <span>{name}</span>
         </NavLink>
       ))}
