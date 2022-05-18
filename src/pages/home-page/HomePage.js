@@ -35,7 +35,7 @@ export function HomePage() {
             {isLoading ? (
               <p>Loading..</p>
             ) : posts.length > 0 ? (
-              posts.map((post) => <PostCard post={post} />)
+              posts.map((post,index) => <PostCard key={index} post={post} />)
             ) : (
               "loading"
             )}

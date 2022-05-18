@@ -1,0 +1,57 @@
+.add-post-card-edit-profile {
+  width: 26rem;
+  height: fit-content;
+  padding: 1rem;
+  border-radius: 5px;
+  background: var(--white);
+  box-shadow: var(--post-card-box-shadow);
+  display: flex;
+  flex-direction: column;
+  width: 20rem;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.profile-image-add {
+  display: flex;
+  width: 28rem;
+  gap: 0.3rem;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.profile-name-user-name {
+  color: var(--blue);
+}
+
+.profile-name-user {
+  display: flex;
+  gap: 0.7rem;
+}
+
+.input-website {
+  width: 100%;
+  padding: 7px;
+}
+
+.profile-btn-section {
+  padding: 0.7rem 0.7rem 0.7rem 0;
+  display: flex;
+  gap: 1rem;
+}
+
+.input-website-link,
+.user-bio-input {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+input[type="file"]::file-selector-button {
+  border: 2px solid var(--blue);
+  padding: 0.2em 0.4em;
+  border-radius: 0.2em;
+  background-color: var(--blue);
+  transition: 1s;
+  color: var(--white);
+}

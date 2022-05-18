@@ -10,12 +10,15 @@ import {
   deletePost,
 } from "../../features/posts/postSlice";
 import { AddPostModal } from "../../modals";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 export function PostCard({ post }) {
   const [showModal, setShowModal] = useState(false);
   const { isPostInEditMode } = usePosts();
   const { user } = useAuth();
+  const navigate = useNavigate();
+  const userName = user?.username;
+  const userId = user?._id;
   const dispatch = useDispatch();
 
   const isPostAlreadyLiked = isPostLiked(user, post.likes);
@@ -46,9 +49,11 @@ export function PostCard({ post }) {
       )}
       <div className="post-user-detail">
         <img
-          className="avatar"
-          src="https://i.pravatar.cc/30"
+          className="avatar-img-home"
+          src={`https://ui-avatars.com/api/name=${post?.firstName}${post?.lastName}?background=0D8ABC&color=fff`}
           alt="profile avatar"
+          onClick={() => navigate(`/profile/${post.userId}`)}
+          title={post.username}
         />
         <div className="user-name-time">
           <div className="profilename">
@@ -91,21 +96,21 @@ export function PostCard({ post }) {
               className="add-post-footer-btn"
               onClick={() => handleEditPost()}
             >
-              <span class="material-symbols-outlined">edit</span>
+              <span className="material-symbols-outlined">edit</span>
             </button>
             <button
               className="add-post-footer-btn"
               onClick={() => handleDeletePost(post._id)}
             >
-              <span class="material-symbols-outlined">delete</span>
+              <span className="material-symbols-outlined">delete</span>
             </button>
             <button className="add-post-footer-btn">
-              <span class="material-symbols-outlined">bookmark</span>
+              <span className="material-symbols-outlined">bookmark</span>
             </button>
           </div>
         ) : (
           <button className="add-post-footer-btn">
-            <span class="material-symbols-outlined">bookmark</span>
+            <span className="material-symbols-outlined">bookmark</span>
           </button>
         )}
       </div>

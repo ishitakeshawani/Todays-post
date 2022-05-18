@@ -1,0 +1,96 @@
+.profile-section {
+  width: 37rem;
+  background: var(--white);
+  padding: 2rem;
+  display: flex;
+  border-radius: 5px;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: row;
+}
+
+.profile-details {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.posts-follows-number {
+  padding: 1rem 1rem 1rem 0;
+  display: flex;
+  gap: 1rem;
+}
+
+.user-posts {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.profile-right {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 15%;
+}
+
+.profile-middle-section {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1rem;
+}
+
+.user-first-last-names {
+  font-size: 1.4rem;
+  font-weight: 500;
+}
+
+.username {
+  color: var(--gray-text);
+}
+
+.user-bio {
+  width: 80%;
+  font-size: 0.9rem;
+}
+
+.website {
+  font-size: 1rem;
+}
+
+.website-title {
+  font-weight: 500;
+}
+
+.profile-btn {
+  background: var(--blue);
+  font-size: 0.8rem;
+  border-radius: 6px;
+  padding: 0.6rem 0.2rem;
+}
+
+.profile-left {
+  width: 80%;
+}
+
+.website a {
+  color: var(--blue);
+}
+
+.recent-posts-section {
+  height: fit-content;
+  display: flex;
+  margin: 1rem;
+  flex-direction: column;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+
+.posts-at-profile {
+  display: flex;
+  gap: 1rem;
+  flex-direction: column;
+}

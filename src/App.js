@@ -3,6 +3,7 @@ import {
   HomePage,
   LandingPage,
   LoginPage,
+  ProfilePage,
   SignUpPage,
   SinglePostPage,
 } from "./pages";
@@ -17,6 +18,7 @@ function App() {
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/post/:postId" element={<SinglePostPage />} />
+        <Route path="/profile/:userId" element={<ProfilePage />} />
       </Routes>
     </div>
   );

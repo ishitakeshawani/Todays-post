@@ -12,7 +12,7 @@ body {
 
 .homepage-section {
   display: flex;
-  margin-top: 1rem;
+  margin-top: 0.3rem;
   height: 100vh;
   justify-content: center;
   width: 90vw;
@@ -132,7 +132,6 @@ body {
 }
 
 .add-post-card-footer-left {
-  margin-left: 1.9rem;
   display: flex;
   gap: 0.8rem;
 }
@@ -187,6 +186,8 @@ body {
   font-size: 0.99rem;
   font-weight: 400;
   line-height: 1.2rem;
+  text-align: left;
+  word-wrap: break-word;
   color: var(--post-text-color);
 }
 

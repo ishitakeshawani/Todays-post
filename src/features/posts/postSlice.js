@@ -97,6 +97,7 @@ export const deletePost = createAsyncThunk(
   }
 );
 
+
 const postSlice = createSlice({
   name: "posts",
   initialState,

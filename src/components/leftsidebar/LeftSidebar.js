@@ -1,7 +1,15 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { useAuth } from "../../features/auth/authSlice";
 
-export function LeftSidebar({ addPostShowModal, showModal, setShowModal }) {
+export function LeftSidebar({
+  addPostShowModal,
+  showModal,
+  setShowModal,
+  isSinglePost,
+}) {
+  const { user } = useAuth();
+  const userId = user?._id;
   const sideBarItems = [
     {
       name: "Home",
@@ -20,7 +28,7 @@ export function LeftSidebar({ addPostShowModal, showModal, setShowModal }) {
     },
     {
       name: "Profile",
-      path: "/profile",
+      path: `/profile/${userId}`,
       iconName: "account_circle",
     },
   ];
@@ -39,12 +47,14 @@ export function LeftSidebar({ addPostShowModal, showModal, setShowModal }) {
           <span>{name}</span>
         </NavLink>
       ))}
-      <button
-        className="link-no-style sidebar-item btn add-post-btn-sidebar"
-        onClick={addPostShowModal}
-      >
-        <span>Add new post</span>
-      </button>
+      {!isSinglePost && (
+        <button
+          className="link-no-style sidebar-item btn add-post-btn-sidebar"
+          onClick={addPostShowModal}
+        >
+          <span>Add new post</span>
+        </button>
+      )}
     </div>
   );
 }

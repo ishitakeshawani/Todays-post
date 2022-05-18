@@ -1,18 +1,22 @@
 import React, { useState } from "react";
-import { NavBar, RightSection, PostCard } from "../../components";
-import { NavLink, useParams } from "react-router-dom";
+import { NavBar, RightSection, PostCard, LeftSidebar } from "../../components";
+import { useParams } from "react-router-dom";
 import { usePosts } from "../../features/posts/postSlice";
 import "./singlepostpage.css";
 import { addComment } from "../../features/posts/postSlice";
 import { useDispatch } from "react-redux";
 
 export function SinglePostPage() {
-  const [isLoading, setIsLoading] = useState(false);
+  const [isSinglePost, setIsSinglePost] = useState(true);
   const { posts } = usePosts();
   const dispatch = useDispatch();
   const [commentText, setCommentText] = useState("");
   const { postId } = useParams();
   const post = posts.find((post) => post._id === postId);
+  const [showModal, setShowModal] = useState(false);
+  const addPostShowModal = () => {
+    setShowModal(true);
+  };
 
   const addCommentToPost = (postId) => {
     dispatch(addComment({ postId, comment: commentText }));
@@ -30,28 +34,7 @@ export function SinglePostPage() {
     <div className="homepage">
       <NavBar />
       <div className="homepage-section">
-        <div className="left-section">
-          <NavLink className="link-no-style sidebar-item" to="/home">
-            <span className="material-symbols-outlined">home</span>
-            <span>Home</span>
-          </NavLink>
-          <NavLink className="link-no-style sidebar-item" to="/explore">
-            <span className="material-symbols-outlined">explore</span>
-            <span>Explore</span>
-          </NavLink>
-          <NavLink className="link-no-style sidebar-item" to="/explore">
-            <span className="material-symbols-outlined">bookmarks</span>
-            <span>Bookmarks</span>
-          </NavLink>
-          <NavLink className="link-no-style sidebar-item" to="/explore">
-            <span className="material-symbols-outlined">notifications</span>
-            <span>Notifications</span>
-          </NavLink>
-          <NavLink className="link-no-style sidebar-item" to="/explore">
-            <span className="material-symbols-outlined">account_circle</span>
-            <span>Profile</span>
-          </NavLink>
-        </div>
+        <LeftSidebar isSinglePost={isSinglePost} />
         <div className="middle-section">
           <div className="posts-at-home">
             <PostCard post={post} />
