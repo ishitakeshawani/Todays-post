@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 const user = JSON.parse(localStorage.getItem("user"));
 
 const initialState = {
+  users: [],
   user: user ? user : null,
   isLoading: false,
   error: "",
@@ -42,6 +43,14 @@ export const login = createAsyncThunk(
 );
 
 export const logout = createAction("auth/logout");
+
+export const getAllUsers = createAsyncThunk("auth/getAllUsers", async () => {
+  const {
+    data: { users },
+  } = await axios.get("/api/users");
+  console.log(users);
+  return users;
+});
 
 export const authSlice = createSlice({
   name: "auth",
@@ -87,6 +96,17 @@ export const authSlice = createSlice({
       .addCase(login.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload;
+      })
+      .addCase(getAllUsers.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getAllUsers.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.users = action.payload;
+      })
+      .addCase(getAllUsers.rejected, (state) => {
+        state.isLoading = false;
+        state.error = "can not fetch all users";
       });
   },
 });
