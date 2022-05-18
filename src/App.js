@@ -7,6 +7,7 @@ import {
   SignUpPage,
   SinglePostPage,
   BookmarkPage,
+  ExplorePage,
 } from "./pages";
 import { Routes, Route } from "react-router-dom";
 
@@ -21,6 +22,7 @@ function App() {
         <Route path="/post/:postId" element={<SinglePostPage />} />
         <Route path="/profile/:userId" element={<ProfilePage />} />
         <Route path="/bookmarks/:userId" element={<BookmarkPage />} />
+        <Route path="/explore" element={<ExplorePage />} />
       </Routes>
     </div>
   );
