@@ -60,7 +60,7 @@ export function PostCard({ post }) {
       <div className="post-user-detail">
         <img
           className="avatar-img-home"
-          src={`https://ui-avatars.com/api/name=${post?.firstName}${post?.lastName}?background=0D8ABC&color=fff`}
+          src={`https://ui-avatars.com/api/name=${post?.firstName}${post?.lastName}?background=1d9af1&color=fff`}
           alt="profile avatar"
           onClick={() => navigate(`/profile/${post.userId}`)}
           title={post.username}

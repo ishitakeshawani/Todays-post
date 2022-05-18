@@ -60,7 +60,7 @@ export const ProfilePage = () => {
                   <div className="profile-picture">
                     <img
                       className="avatar"
-                      src={`https://ui-avatars.com/api/name=${userData?.firstName}${userData?.lastName}?background=0D8ABC&color=fff`}
+                      src={`https://ui-avatars.com/api/name=${userData?.firstName}${userData?.lastName}?background=1d9af1&color=fff`}
                       alt="profile avatar"
                     />
                   </div>

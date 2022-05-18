@@ -16,7 +16,7 @@ export function NavBar() {
       <div className="right-items">
         <img
           className="avatar-img"
-          src={`https://ui-avatars.com/api/name=${user?.firstName}${user?.lastName}?background=0D8ABC&color=fff`}
+          src={`https://ui-avatars.com/api/name=${user?.firstName}${user?.lastName}?background=1d9af1&color=fff`}
           alt="profile avatar"
           onClick={() => navigate(`/profile/${userId}`)}
         />
