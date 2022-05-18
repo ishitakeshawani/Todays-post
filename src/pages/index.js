@@ -7,3 +7,4 @@ export { SinglePostPage } from "./single-post-page/SinglePostPage";
 export { ProfilePage } from "./profile-page/ProfilePage";
 export { isAlreadyFollowing } from "./profile-page/utils";
 export { BookmarkPage } from "./bookmark-page/BookmarkPage";
+export { ExplorePage } from "./explore-page/ExplorePage";
