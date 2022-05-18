@@ -224,6 +224,8 @@ body {
   width: 16rem;
   justify-content: space-between;
   align-items: center;
+  gap: 0.5rem;
+  margin: 0.6rem 0;
 }
 
 .profile-name {
@@ -236,8 +238,12 @@ body {
   background: var(--blue);
   color: var(--white);
   border: none;
-  padding: 0.5rem 1rem;
+  padding: 0.5rem 1.2rem;
   cursor: pointer;
+  width: 5rem;
+  font-size: 0.7rem;
+  border-radius: 5px;
+  font-weight: 500;
 }
 
 .like-count-section {
