@@ -41,7 +41,7 @@ export function BookmarkPage() {
                   <PostCard key={index} post={post} />
                 ))
               ) : (
-                "You do not have any bookmarked posts."
+                <p className="bookmark-text">You do not have any bookmarked posts.</p>
               )}
             </div>
           </div>
