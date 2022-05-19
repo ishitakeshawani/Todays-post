@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 
 const initialState = {
   posts: [],
+  sortType: "",
   bookmarks: [],
   isLoading: false,
   error: "",
@@ -22,7 +23,8 @@ export const createPost = createAsyncThunk("posts/Post", async (postData) => {
 export const getAllPosts = createAsyncThunk("posts/getAllPosts", async () => {
   try {
     const { data: posts } = await axios.get("/api/posts");
-    return posts;
+    console.log(posts.posts);
+    return posts.posts;
   } catch (error) {
     console.log(error);
   }
@@ -147,6 +149,9 @@ const postSlice = createSlice({
     setEditPostMode: (state, action) => {
       state.isPostInEditMode = action.payload;
     },
+    setSortType: (state, action) => {
+      state.sortType = action.payload;
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -166,7 +171,7 @@ const postSlice = createSlice({
       })
       .addCase(getAllPosts.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.posts = action.payload.posts.reverse();
+        state.posts = action.payload.reverse();
       })
       .addCase(getAllPosts.rejected, (state) => {
         state.isLoading = false;
@@ -230,4 +235,4 @@ const postSlice = createSlice({
 
 export const postReducer = postSlice.reducer;
 export const usePosts = () => useSelector((state) => state.posts);
-export const { setEditPostMode } = postSlice.actions;
+export const { setEditPostMode, setSortType } = postSlice.actions;
