@@ -1,6 +1,6 @@
 import { React, useState } from "react";
 import { useDispatch } from "react-redux";
-import { isPostLiked } from "../../features";
+import { isPostBookmarked, isPostLiked } from "../../features";
 import { useAuth } from "../../features/auth/authSlice";
 import {
   addLikeToPost,
@@ -8,13 +8,15 @@ import {
   usePosts,
   setEditPostMode,
   deletePost,
+  addToBookMark,
+  removeFromBookMark,
 } from "../../features/posts/postSlice";
 import { AddPostModal } from "../../modals";
 import { Link, useNavigate } from "react-router-dom";
 
 export function PostCard({ post }) {
   const [showModal, setShowModal] = useState(false);
-  const { isPostInEditMode } = usePosts();
+  const { isPostInEditMode, bookmarks } = usePosts();
   const { user } = useAuth();
   const navigate = useNavigate();
   const userName = user?.username;
@@ -22,11 +24,12 @@ export function PostCard({ post }) {
   const dispatch = useDispatch();
 
   const isPostAlreadyLiked = isPostLiked(user, post.likes);
+  const isPostAlreadyBookmarked = isPostBookmarked(bookmarks, post._id);
 
   const likePost = (id) => {
     !isPostAlreadyLiked
       ? dispatch(addLikeToPost(id))
-      : (dispatch(removeLikedPost(id)), setChangeColor(false));
+      : dispatch(removeLikedPost(id));
   };
 
   const handleEditPost = (post) => {
@@ -35,6 +38,13 @@ export function PostCard({ post }) {
   };
   const handleDeletePost = (postId) => {
     dispatch(deletePost(postId));
+  };
+  const handleBookmark = (postId) => {
+    if (!isPostAlreadyBookmarked) {
+      dispatch(addToBookMark(postId));
+    } else {
+      dispatch(removeFromBookMark(postId));
+    }
   };
 
   return (
@@ -50,7 +60,7 @@ export function PostCard({ post }) {
       <div className="post-user-detail">
         <img
           className="avatar-img-home"
-          src={`https://ui-avatars.com/api/name=${post?.firstName}${post?.lastName}?background=0D8ABC&color=fff`}
+          src={`https://ui-avatars.com/api/name=${post?.firstName}${post?.lastName}?background=1d9af1&color=fff`}
           alt="profile avatar"
           onClick={() => navigate(`/profile/${post.userId}`)}
           title={post.username}
@@ -86,7 +96,7 @@ export function PostCard({ post }) {
             <span>{post.likes?.likeCount} </span>
           </div>
           <Link className="add-post-footer-btn" to={`/post/${post._id}`}>
-            <span class="material-symbols-outlined">comment</span>
+            <span className="material-symbols-outlined">comment</span>
           </Link>
         </div>
 
@@ -104,13 +114,35 @@ export function PostCard({ post }) {
             >
               <span className="material-symbols-outlined">delete</span>
             </button>
-            <button className="add-post-footer-btn">
-              <span className="material-symbols-outlined">bookmark</span>
+            <button
+              className={
+                isPostAlreadyBookmarked
+                  ? "add-post-footer-btn-blue"
+                  : "add-post-footer-btn"
+              }
+              onClick={() => handleBookmark(post._id)}
+            >
+              {isPostAlreadyBookmarked ? (
+                <span className="material-symbols-sharp">bookmark</span>
+              ) : (
+                <span className="material-symbols-outlined">bookmark</span>
+              )}
             </button>
           </div>
         ) : (
-          <button className="add-post-footer-btn">
-            <span className="material-symbols-outlined">bookmark</span>
+          <button
+            className={
+              isPostAlreadyBookmarked
+                ? "add-post-footer-btn-blue"
+                : "add-post-footer-btn"
+            }
+            onClick={() => handleBookmark(post._id)}
+          >
+            {isPostAlreadyBookmarked ? (
+              <span className="material-symbols-sharp">bookmark</span>
+            ) : (
+              <span className="material-symbols-outlined">bookmark</span>
+            )}
           </button>
         )}
       </div>

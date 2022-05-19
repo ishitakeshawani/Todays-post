@@ -4,6 +4,7 @@ import { useSelector } from "react-redux";
 
 const initialState = {
   posts: [],
+  bookmarks: [],
   isLoading: false,
   error: "",
   isPostInEditMode: false,
@@ -97,6 +98,47 @@ export const deletePost = createAsyncThunk(
   }
 );
 
+export const addToBookMark = createAsyncThunk(
+  "/post/addToBookMark",
+  async (postId) => {
+    try {
+      const {
+        data: { bookmarks },
+      } = await axios.post(`/api/users/bookmark/${postId}`);
+      return bookmarks;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const removeFromBookMark = createAsyncThunk(
+  "/post/removeFromBookMark",
+  async (postId) => {
+    try {
+      const {
+        data: { bookmarks },
+      } = await axios.post(`/api/users/remove-bookmark/${postId}`);
+      return bookmarks;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
+
+export const getBookmarkedPosts = createAsyncThunk(
+  "/post/getBookmarkedPosts",
+  async () => {
+    try {
+      const {
+        data: { bookmarks },
+      } = await axios.get("/api/users/bookmark");
+      return bookmarks;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+);
 
 const postSlice = createSlice({
   name: "posts",
@@ -162,6 +204,26 @@ const postSlice = createSlice({
       })
       .addCase(addComment.fulfilled, (state, action) => {
         state.posts = action.payload.posts.reverse();
+      })
+      .addCase(addToBookMark.fulfilled, (state, action) => {
+        state.bookmarks = action.payload.reverse();
+      })
+      .addCase(getBookmarkedPosts.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(getBookmarkedPosts.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.bookmarks = action.payload;
+      })
+      .addCase(getBookmarkedPosts.rejected, (state) => {
+        state.isLoading = false;
+        state.error = "can not fetch bookmarks";
+      })
+      .addCase(removeFromBookMark.fulfilled, (state, action) => {
+        state.bookmarks = action.payload;
+      })
+      .addCase(removeFromBookMark.rejected, (state) => {
+        state.error = "can not remove from bookmarks";
       });
   },
 });

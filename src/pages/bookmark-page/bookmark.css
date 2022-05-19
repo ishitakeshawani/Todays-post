@@ -1,0 +1,8 @@
+.bookmarks-title {
+  font-weight: 500;
+  color: var(--blue);
+}
+
+.bookmark-text {
+  text-align: center;
+}
