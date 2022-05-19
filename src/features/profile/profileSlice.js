@@ -63,7 +63,7 @@ export const followUser = createAsyncThunk(
       return { followUser, followers, following };
     } catch (error) {
       if (error.response.status === 404) {
-        toast("Please do login to follow user!");
+        toast("Please do signup to follow user!");
       } else {
         toast(error.message);
       }
@@ -84,7 +84,7 @@ export const unFollowUser = createAsyncThunk(
       return { followUser, followers, following };
     } catch (error) {
       if (error.response.status === 404) {
-        toast("Please do login to unfollow user!");
+        toast("Please do signup to unfollow user!");
       } else {
         toast(error.message);
       }
