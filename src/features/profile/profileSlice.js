@@ -22,9 +22,9 @@ export const getUserById = createAsyncThunk(
       return user;
     } catch (error) {
       if (error.response.status === 404) {
-        toast("Please do login!");
+        toast("Please do signup!");
       } else if (error.response.status === 500) {
-        toast("Please do login to get profile details!");
+        toast("Please do signup to get profile details!");
       } else {
         toast(error.message);
       }
@@ -42,7 +42,7 @@ export const editUserData = createAsyncThunk(
       return user;
     } catch (error) {
       if (error.response.status === 404) {
-        toast("Please do login to edit profile!");
+        toast("Please do signup to edit profile!");
       } else {
         toast(error.message);
       }
