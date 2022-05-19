@@ -5,6 +5,7 @@ import { useSelector } from "react-redux";
 const user = JSON.parse(localStorage.getItem("user"));
 
 const initialState = {
+  isLoggedIn: user ? true : false,
   users: [],
   user: user ? user : null,
   isLoading: false,
@@ -21,6 +22,7 @@ export const signup = createAsyncThunk(
       axios.defaults.headers.common["authorization"] = encodedToken;
       return { createdUser, encodedToken };
     } catch (error) {
+      console.log(error);
       return rejectWithValue(error.message);
     }
   }
@@ -37,12 +39,14 @@ export const login = createAsyncThunk(
 
       return { foundUser, encodedToken };
     } catch (error) {
+      console.log(error);
       return rejectWithValue(error.message);
     }
   }
 );
 
 export const logout = createAction("auth/logout");
+export const existedUser = createAction("auth/existedUser");
 
 export const getAllUsers = createAsyncThunk("auth/getAllUsers", async () => {
   const {
@@ -57,7 +61,13 @@ export const authSlice = createSlice({
   reducers: {},
   extraReducers: (builder) => {
     builder
+      .addCase(existedUser, (state) => {
+        state.user = JSON.parse(localStorage.getItem("user"));
+        axios.defaults.headers.common["authorization"] =
+          localStorage.getItem("token");
+      })
       .addCase(logout, (state) => {
+        state.isLoggedIn = false;
         state.user = null;
         localStorage.removeItem("token");
         localStorage.removeItem("user");
@@ -71,6 +81,7 @@ export const authSlice = createSlice({
         state.error = "";
         state.isLoading = false;
         state.user = action.payload.createdUser;
+        state.isLoggedIn = true;
         localStorage.setItem("token", action.payload.encodedToken);
         localStorage.setItem(
           "user",
@@ -89,6 +100,7 @@ export const authSlice = createSlice({
         state.error = "";
         state.isLoading = false;
         state.user = action.payload.foundUser;
+        state.isLoggedIn = true;
         localStorage.setItem("token", action.payload.encodedToken);
         localStorage.setItem("user", JSON.stringify(action.payload.foundUser));
       })

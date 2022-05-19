@@ -1,3 +1,4 @@
+import { React, useEffect } from "react";
 import "./App.css";
 import {
   HomePage,
@@ -9,20 +10,64 @@ import {
   BookmarkPage,
   ExplorePage,
 } from "./pages";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, useNavigate } from "react-router-dom";
+import { existedUser, useAuth } from "./features/auth/authSlice";
+import { useDispatch } from "react-redux";
+import { RequireAuth } from "./RequireAuth";
 
 function App() {
+  const navigate = useNavigate();
+  const { isLoggedIn } = useAuth();
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token !== null) {
+      dispatch(existedUser());
+    }
+  }, []);
+
   return (
     <div className="App">
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/home" element={<HomePage />} />
+        <Route
+          path="/home"
+          element={isLoggedIn ? <HomePage /> : <LoginPage />}
+        />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/login" element={<LoginPage />} />
-        <Route path="/post/:postId" element={<SinglePostPage />} />
-        <Route path="/profile/:userId" element={<ProfilePage />} />
-        <Route path="/bookmarks/:userId" element={<BookmarkPage />} />
-        <Route path="/explore" element={<ExplorePage />} />
+        <Route
+          path="/post/:postId"
+          element={
+            <RequireAuth isLoggedIn={isLoggedIn}>
+              <SinglePostPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/profile/:userId"
+          element={
+            <RequireAuth isLoggedIn={isLoggedIn}>
+              <ProfilePage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/bookmarks/:userId"
+          element={
+            <RequireAuth isLoggedIn={isLoggedIn}>
+              <BookmarkPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="/explore"
+          element={
+            <RequireAuth isLoggedIn={isLoggedIn}>
+              <ExplorePage />
+            </RequireAuth>
+          }
+        />
       </Routes>
     </div>
   );
