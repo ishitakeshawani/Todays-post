@@ -18,7 +18,7 @@ export const createPost = createAsyncThunk("posts/Post", async (postData) => {
     return posts;
   } catch (error) {
     if (error.response.status === 404) {
-      toast("Please do login to create post!");
+      toast("Please do signup to create post!");
     } else {
       toast(error.message);
     }
@@ -32,7 +32,7 @@ export const getAllPosts = createAsyncThunk("posts/getAllPosts", async () => {
     return posts.posts;
   } catch (error) {
     if (error.response.status === 404) {
-      toast("Please do login to fetch posts!");
+      toast("Please do signup to fetch posts!");
     } else {
       toast(error.message);
     }
@@ -49,7 +49,7 @@ export const addComment = createAsyncThunk(
       return posts;
     } catch (error) {
       if (error.response.status === 404) {
-        toast("Please do login to add comment!");
+        toast("Please do signup to add comment!");
       } else {
         toast(error.message);
       }
@@ -67,7 +67,7 @@ export const addLikeToPost = createAsyncThunk(
       return posts;
     } catch (error) {
       if (error.response.status === 404) {
-        toast("Please do login to like a post!");
+        toast("Please do signup to like a post!");
       } else {
         toast(error.message);
       }
@@ -85,7 +85,7 @@ export const removeLikedPost = createAsyncThunk(
       return posts;
     } catch (error) {
       if (error.response.status === 404) {
-        toast("Please do login to remove like!");
+        toast("Please do signup to remove like!");
       } else {
         toast(error.message);
       }
@@ -103,7 +103,7 @@ export const editPost = createAsyncThunk(
       return posts;
     } catch (error) {
       if (error.response.status === 404) {
-        toast("Please do login to edit a post!");
+        toast("Please do signup to edit a post!");
       } else {
         toast(error.message);
       }
@@ -121,7 +121,7 @@ export const deletePost = createAsyncThunk(
       return posts;
     } catch (error) {
       if (error.response.status === 404) {
-        toast("Please do login to delete a post!");
+        toast("Please do signup to delete a post!");
       } else {
         toast(error.message);
       }
@@ -139,7 +139,7 @@ export const addToBookMark = createAsyncThunk(
       return bookmarks;
     } catch (error) {
       if (error.response.status === 404) {
-        toast("Please do login to add post to bookmarks!");
+        toast("Please do signup to add post to bookmarks!");
       } else {
         toast(error.message);
       }
@@ -157,7 +157,7 @@ export const removeFromBookMark = createAsyncThunk(
       return bookmarks;
     } catch (error) {
       if (error.response.status === 404) {
-        toast("Please do login to remove from bookmarks!");
+        toast("Please do signup to remove from bookmarks!");
       } else {
         toast(error.message);
       }
@@ -175,7 +175,7 @@ export const getBookmarkedPosts = createAsyncThunk(
       return bookmarks;
     } catch (error) {
       if (error.response.status === 404) {
-        toast("Please do login to fetch bookmarked posts!");
+        toast("Please do signup to fetch bookmarked posts!");
       } else {
         toast(error.message);
       }
