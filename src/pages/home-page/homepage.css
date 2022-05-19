@@ -196,6 +196,7 @@ body {
   padding: 1rem;
   border-radius: 5px;
   width: 35rem;
+  cursor: pointer;
 }
 
 .post-user-detail {

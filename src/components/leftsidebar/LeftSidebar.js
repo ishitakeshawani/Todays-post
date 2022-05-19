@@ -8,7 +8,7 @@ export function LeftSidebar({
   setShowModal,
   isSinglePost,
 }) {
-  const { user } = useAuth();
+  const { user, isLoggedIn } = useAuth();
   const userId = user?._id;
   const sideBarItems = [
     {
@@ -31,11 +31,17 @@ export function LeftSidebar({
       path: `/profile/${userId}`,
       iconName: "account_circle",
     },
+    {
+      name: isLoggedIn ? "Logout" : "Login",
+      path: isLoggedIn ? `/profile/${userId}` : `/login`,
+      iconName: isLoggedIn ? "login" : "logout",
+    },
   ];
   return (
     <div className="left-section">
-      {sideBarItems.map(({ name, path, iconName },index) => (
-        <NavLink key={index}
+      {sideBarItems.map(({ name, path, iconName }, index) => (
+        <NavLink
+          key={index}
           className={({ isActive }) =>
             `${
               isActive ? "active-sidebar-item" : ""

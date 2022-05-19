@@ -48,7 +48,7 @@ export function PostCard({ post }) {
   };
 
   return (
-    <div className="post">
+    <div className="post" onClick={() => navigate(`/post/${post._id}`)}>
       {showModal && (
         <AddPostModal
           showModal={showModal}

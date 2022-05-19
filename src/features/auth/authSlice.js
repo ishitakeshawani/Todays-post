@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk, createAction } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const user = JSON.parse(localStorage.getItem("user"));
 
@@ -20,9 +21,10 @@ export const signup = createAsyncThunk(
         data: { createdUser, encodedToken },
       } = await axios.post("api/auth/signup", userData);
       axios.defaults.headers.common["authorization"] = encodedToken;
+      toast("Sucessfully made an account!");
       return { createdUser, encodedToken };
     } catch (error) {
-      console.log(error);
+      toast(error.message);
       return rejectWithValue(error.message);
     }
   }
@@ -36,10 +38,14 @@ export const login = createAsyncThunk(
         data: { foundUser, encodedToken },
       } = await axios.post("/api/auth/login", userData);
       axios.defaults.headers.common["authorization"] = encodedToken;
-
+      toast("Sucessfully logged in!");
       return { foundUser, encodedToken };
     } catch (error) {
-      console.log(error);
+      if (error.response.status === 404) {
+        toast("Please do signup first!");
+      } else {
+        toast(error.message);
+      }
       return rejectWithValue(error.message);
     }
   }
@@ -49,10 +55,14 @@ export const logout = createAction("auth/logout");
 export const existedUser = createAction("auth/existedUser");
 
 export const getAllUsers = createAsyncThunk("auth/getAllUsers", async () => {
-  const {
-    data: { users },
-  } = await axios.get("/api/users");
-  return users;
+  try {
+    const {
+      data: { users },
+    } = await axios.get("/api/users");
+    return users;
+  } catch (error) {
+    toast(error.message);
+  }
 });
 
 export const authSlice = createSlice({
