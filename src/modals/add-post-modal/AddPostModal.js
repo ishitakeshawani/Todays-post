@@ -46,16 +46,6 @@ export function AddPostModal({
             ></textarea>
           </div>
           <div className="add-post-card-footer">
-            <div className="add-post-card-footer-left">
-              <button className="add-post-footer-btn">
-                <span className="material-symbols-outlined">add_reaction</span>
-              </button>
-              <button className="add-post-footer-btn">
-                <span class="material-symbols-outlined">
-                  add_photo_alternate
-                </span>
-              </button>
-            </div>
             <div>
               <button
                 className="btn cancel-post-btn"

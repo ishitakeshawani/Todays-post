@@ -12,23 +12,6 @@ export const posts = [
     content:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
     likes: {
-      likeCount: 3,
-      likedBy: [],
-      dislikedBy: [],
-    },
-    userId: "test-user-id-1",
-    comments: [],
-    username: "adarshbalika",
-    firstName: "Adarsh",
-    lastName: "Balika",
-    createdAt: formatDate(),
-    updatedAt: formatDate(),
-  },
-  {
-    _id: uuid(),
-    content:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
-    likes: {
       likeCount: 10,
       likedBy: [],
       dislikedBy: [],
@@ -46,41 +29,7 @@ export const posts = [
     content:
       "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
     likes: {
-      likeCount: 5,
-      likedBy: [],
-      dislikedBy: [],
-    },
-    comments: [],
-    userId: "test-user-id-3",
-    username: "tylerjordan",
-    firstName: "Tyler",
-    lastName: "Jordan",
-    createdAt: formatDate(),
-    updatedAt: formatDate(),
-  },
-  {
-    _id: uuid(),
-    content:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
-    likes: {
-      likeCount: 15,
-      likedBy: [],
-      dislikedBy: [],
-    },
-    comments: [],
-    userId: "test-user-id-4",
-    username: "annieozuna",
-    firstName: "Annie",
-    lastName: "Ozuna",
-    createdAt: formatDate(),
-    updatedAt: formatDate(),
-  },
-  {
-    _id: uuid(),
-    content:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
-    likes: {
-      likeCount: 8,
+      likeCount: 28,
       likedBy: [],
       dislikedBy: [],
     },
@@ -90,6 +39,57 @@ export const posts = [
     firstName: "Marcos",
     lastName: "Barrios",
     createdAt: formatDate(),
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    content:
+      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
+    likes: {
+      likeCount: 5,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    comments: [],
+    userId: "test-user-id-3",
+    username: "tylerjordan",
+    firstName: "Tyler",
+    lastName: "Jordan",
+    createdAt: "May 18, 2022",
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    content:
+      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
+    likes: {
+      likeCount: 10,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    comments: [],
+    userId: "test-user-id-4",
+    username: "annieozuna",
+    firstName: "Annie",
+    lastName: "Ozuna",
+    createdAt: "May 10, 2022",
+    updatedAt: formatDate(),
+  },
+  {
+    _id: uuid(),
+    content:
+      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
+    likes: {
+      likeCount: 3,
+      likedBy: [],
+      dislikedBy: [],
+    },
+    userId: "test-user-id-1",
+    comments: [],
+    username: "adarshbalika",
+    firstName: "Adarsh",
+    lastName: "Balika",
+    createdAt: "May 14, 2022",
     updatedAt: formatDate(),
   },
 ];
