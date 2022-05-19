@@ -59,6 +59,7 @@ export function HomePage() {
 
           <div className="posts-at-home">
             <div className="sort-by-section">
+              <div>Sort By :</div>
               <div className="sortby-chips">
                 <button
                   className={`"btn sort-by-btn" ${

@@ -31,19 +31,21 @@ body {
   background: var(--white);
   color: var(--blue);
   font-weight: 500;
-  border-radius: 5px;
+  border-radius: 1.5rem;
 }
 
 .sort-by-btn-blue {
   background: var(--blue);
   color: var(--white);
   margin: 0 0.9rem;
+  border-radius: 1.5rem;
 }
 
 .sort-by-btn:hover {
   margin: 0 0.9rem;
   background: var(--blue);
   color: var(--white);
+  border-radius: 1.5rem;
 }
 
 .left-section,

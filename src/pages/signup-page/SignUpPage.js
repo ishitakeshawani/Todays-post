@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { signup } from "../../features/auth/authSlice";
 import { doValidate } from "./utiils";
+import { useAuth } from "../../features/auth/authSlice";
 
 export function SignUpPage() {
   const [userData, setUserData] = useState({
@@ -21,6 +22,7 @@ export function SignUpPage() {
   const [type, setType] = useState("password");
   const [confirmPasswordType, setConfirmPasswordType] = useState("password");
   const [passwordError, setPasswordError] = useState("");
+  const { isLoggedIn } = useAuth();
 
   const onHandleSubmit = async (e) => {
     if (doValidate(userData, setError, setPasswordError)) {

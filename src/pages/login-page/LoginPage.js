@@ -1,7 +1,12 @@
-import { React, useState } from "react";
+import { React, useState, useEffect } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { login, signup } from "../../features/auth/authSlice";
+import {
+  login,
+  signup,
+  useAuth,
+  existedUser,
+} from "../../features/auth/authSlice";
 
 export function LoginPage() {
   const [type, setType] = useState("password");
@@ -9,10 +14,12 @@ export function LoginPage() {
     email: "",
     password: "",
   });
+  const { isLoggedIn } = useAuth();
   let navigate = useNavigate();
   const dispatch = useDispatch();
   const [error, setError] = useState("");
   const [passwordError, setPasswordError] = useState("");
+
   const doValidate = () => {
     if (
       !/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test(
@@ -44,6 +51,9 @@ export function LoginPage() {
         email: "",
         password: "",
       });
+      // if (isLoggedIn) {
+      //   navigate("/home");
+      // }
       navigate("/home");
     }
   };
@@ -71,6 +81,7 @@ export function LoginPage() {
               }));
             }}
           />
+          <p>{userData.email}</p>
           {error && <p style={{ color: "red" }}>{error}</p>}
           <div>
             <label for="" class="login-label" id="password">
@@ -109,13 +120,7 @@ export function LoginPage() {
           >
             Login
           </button>
-          <button
-            type="submit"
-            className="btn btn-login"
-            onClick={(e) => testLogin(e)}
-          >
-            Login with test credentials
-          </button>
+
           <Link to="/signup" className="link-no-style signup-link">
             Create new account{" "}
             <i
