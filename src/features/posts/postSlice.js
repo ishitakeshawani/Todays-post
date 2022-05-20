@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const initialState = {
   posts: [],
@@ -16,7 +17,11 @@ export const createPost = createAsyncThunk("posts/Post", async (postData) => {
     const { data: posts } = await axios.post("/api/posts", { postData });
     return posts;
   } catch (error) {
-    console.log(error.response);
+    if (error.response.status === 404) {
+      toast("Please do login to create post!");
+    } else {
+      toast(error.message);
+    }
   }
 });
 
@@ -26,7 +31,11 @@ export const getAllPosts = createAsyncThunk("posts/getAllPosts", async () => {
     console.log(posts.posts);
     return posts.posts;
   } catch (error) {
-    console.log(error);
+    if (error.response.status === 404) {
+      toast("Please do login to fetch posts!");
+    } else {
+      toast(error.message);
+    }
   }
 });
 
@@ -39,7 +48,11 @@ export const addComment = createAsyncThunk(
       });
       return posts;
     } catch (error) {
-      console.log(error);
+      if (error.response.status === 404) {
+        toast("Please do login to add comment!");
+      } else {
+        toast(error.message);
+      }
     }
   }
 );
@@ -53,7 +66,11 @@ export const addLikeToPost = createAsyncThunk(
       } = await axios.post(`/api/posts/like/${postId}`);
       return posts;
     } catch (error) {
-      console.log(error);
+      if (error.response.status === 404) {
+        toast("Please do login to like a post!");
+      } else {
+        toast(error.message);
+      }
     }
   }
 );
@@ -67,7 +84,11 @@ export const removeLikedPost = createAsyncThunk(
       } = await axios.post(`/api/posts/dislike/${postId}`);
       return posts;
     } catch (error) {
-      console.log(error);
+      if (error.response.status === 404) {
+        toast("Please do login to remove like!");
+      } else {
+        toast(error.message);
+      }
     }
   }
 );
@@ -81,7 +102,11 @@ export const editPost = createAsyncThunk(
       } = await axios.post(`/api/posts/edit/${postId}`, { postData });
       return posts;
     } catch (error) {
-      console.log(error);
+      if (error.response.status === 404) {
+        toast("Please do login to edit a post!");
+      } else {
+        toast(error.message);
+      }
     }
   }
 );
@@ -95,7 +120,11 @@ export const deletePost = createAsyncThunk(
       } = await axios.delete(`/api/posts/${postId}`);
       return posts;
     } catch (error) {
-      console.log(error);
+      if (error.response.status === 404) {
+        toast("Please do login to delete a post!");
+      } else {
+        toast(error.message);
+      }
     }
   }
 );
@@ -109,7 +138,11 @@ export const addToBookMark = createAsyncThunk(
       } = await axios.post(`/api/users/bookmark/${postId}`);
       return bookmarks;
     } catch (error) {
-      console.log(error);
+      if (error.response.status === 404) {
+        toast("Please do login to add post to bookmarks!");
+      } else {
+        toast(error.message);
+      }
     }
   }
 );
@@ -123,7 +156,11 @@ export const removeFromBookMark = createAsyncThunk(
       } = await axios.post(`/api/users/remove-bookmark/${postId}`);
       return bookmarks;
     } catch (error) {
-      console.log(error);
+      if (error.response.status === 404) {
+        toast("Please do login to remove from bookmarks!");
+      } else {
+        toast(error.message);
+      }
     }
   }
 );
@@ -137,7 +174,11 @@ export const getBookmarkedPosts = createAsyncThunk(
       } = await axios.get("/api/users/bookmark");
       return bookmarks;
     } catch (error) {
-      console.log(error);
+      if (error.response.status === 404) {
+        toast("Please do login to fetch bookmarked posts!");
+      } else {
+        toast(error.message);
+      }
     }
   }
 );

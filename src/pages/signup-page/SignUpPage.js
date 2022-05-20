@@ -6,6 +6,8 @@ import { useDispatch } from "react-redux";
 import { signup } from "../../features/auth/authSlice";
 import { doValidate } from "./utiils";
 import { useAuth } from "../../features/auth/authSlice";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export function SignUpPage() {
   const [userData, setUserData] = useState({
@@ -41,7 +43,7 @@ export function SignUpPage() {
   };
   return (
     <form>
-      {/* <ToastContainer /> */}
+      <ToastContainer />
       <div className="login-page">
         <div className="signup">
           <h4 className="login-title">Signup</h4>

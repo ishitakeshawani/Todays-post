@@ -1,12 +1,9 @@
-import { React, useState, useEffect } from "react";
+import { React, useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import {
-  login,
-  signup,
-  useAuth,
-  existedUser,
-} from "../../features/auth/authSlice";
+import { login, signup, useAuth } from "../../features/auth/authSlice";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export function LoginPage() {
   const [type, setType] = useState("password");
@@ -14,7 +11,6 @@ export function LoginPage() {
     email: "",
     password: "",
   });
-  const { isLoggedIn } = useAuth();
   let navigate = useNavigate();
   const dispatch = useDispatch();
   const [error, setError] = useState("");
@@ -51,15 +47,12 @@ export function LoginPage() {
         email: "",
         password: "",
       });
-      // if (isLoggedIn) {
-      //   navigate("/home");
-      // }
       navigate("/home");
     }
   };
   return (
     <div className="login-page">
-      {/* <ToastContainer /> */}
+      <ToastContainer />
       <form>
         <div className="login">
           <h4 className="login-title">Login</h4>
@@ -81,7 +74,6 @@ export function LoginPage() {
               }));
             }}
           />
-          <p>{userData.email}</p>
           {error && <p style={{ color: "red" }}>{error}</p>}
           <div>
             <label for="" class="login-label" id="password">

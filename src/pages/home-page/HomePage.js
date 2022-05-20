@@ -12,6 +12,8 @@ import { useDispatch } from "react-redux";
 import { LeftSidebar, PostCard, RightSection } from "../../components";
 import { useAuth } from "../../features/auth/authSlice";
 import { postsBySortType } from "../../features/posts/utils";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export function HomePage() {
   const [showModal, setShowModal] = useState(false);
@@ -45,6 +47,7 @@ export function HomePage() {
   return (
     <div className="homepage">
       <NavBar />
+      <ToastContainer />
       <div className="homepage-section">
         <LeftSidebar
           addPostShowModal={addPostShowModal}

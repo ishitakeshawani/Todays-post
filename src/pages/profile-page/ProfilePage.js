@@ -14,6 +14,8 @@ import {
 import { AddPostModal, EditProfileModal } from "../../modals";
 import "./profilepage.css";
 import { isAlreadyFollowing } from "./utils";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export const ProfilePage = () => {
   const navigate = useNavigate();
@@ -44,6 +46,7 @@ export const ProfilePage = () => {
   return (
     <div className="homepage">
       <NavBar />
+      <ToastContainer />
       <div className="homepage-section">
         <LeftSidebar
           addPostShowModal={addPostShowModal}
