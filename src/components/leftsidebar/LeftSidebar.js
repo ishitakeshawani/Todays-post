@@ -9,7 +9,7 @@ export function LeftSidebar({
   setShowModal,
   isSinglePost,
 }) {
-  const { user } = useAuth();
+  const { user, isLoggedIn } = useAuth();
   const userId = user?._id;
   const sideBarItems = [
     {
@@ -35,6 +35,11 @@ export function LeftSidebar({
       path: `/profile/${userId}`,
       iconName: "account_circle",
       id: nanoid(),
+    },
+    {
+      name: isLoggedIn ? "Logout" : "Login",
+      path: isLoggedIn ? `/profile/${userId}` : `/login`,
+      iconName: isLoggedIn ? "login" : "logout",
     },
   ];
   return (

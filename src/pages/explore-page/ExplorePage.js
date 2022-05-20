@@ -4,6 +4,7 @@ import { AddPostModal } from "../../modals";
 import { usePosts, getAllPosts } from "../../features/posts/postSlice";
 import { useDispatch } from "react-redux";
 import { LeftSidebar, PostCard, RightSection } from "../../components";
+import * as Mui from "@material-ui/core";
 
 export function ExplorePage() {
   const [showModal, setShowModal] = useState(false);
@@ -31,11 +32,15 @@ export function ExplorePage() {
 
           <div className="posts-at-home">
             {isLoading ? (
-              <p>Loading..</p>
+              <Mui.Grid container justify="center">
+                <Mui.CircularProgress />
+              </Mui.Grid>
             ) : posts.length > 0 ? (
               posts.map((post, index) => <PostCard key={index} post={post} />)
             ) : (
-              "loading"
+              <Mui.Grid container justify="center">
+                <Mui.CircularProgress />
+              </Mui.Grid>
             )}
           </div>
         </div>

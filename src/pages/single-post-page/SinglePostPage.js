@@ -5,6 +5,8 @@ import { usePosts } from "../../features/posts/postSlice";
 import "./singlepostpage.css";
 import { addComment } from "../../features/posts/postSlice";
 import { useDispatch } from "react-redux";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 export function SinglePostPage() {
   const [isSinglePost, setIsSinglePost] = useState(true);
@@ -33,6 +35,7 @@ export function SinglePostPage() {
   return (
     <div className="homepage">
       <NavBar />
+      <ToastContainer />
       <div className="homepage-section">
         <LeftSidebar isSinglePost={isSinglePost} />
         <div className="middle-section">

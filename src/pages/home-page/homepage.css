@@ -12,16 +12,44 @@ body {
 
 .homepage-section {
   display: flex;
-  margin-top: 0.3rem;
+  margin-top: 0.1rem;
   height: 100vh;
   justify-content: center;
   width: 90vw;
   padding: 3rem 0;
 }
 
+.sort-by-section {
+  display: flex;
+  gap: 0.7rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.sort-by-btn {
+  margin: 0 0.9rem;
+  background: var(--white);
+  color: var(--blue);
+  font-weight: 500;
+  border-radius: 1.5rem;
+}
+
+.sort-by-btn-blue {
+  background: var(--blue);
+  color: var(--white);
+  margin: 0 0.9rem;
+  border-radius: 1.5rem;
+}
+
+.sort-by-btn:hover {
+  margin: 0 0.9rem;
+  background: var(--blue);
+  color: var(--white);
+  border-radius: 1.5rem;
+}
+
 .left-section,
 .right-section {
-  position: sticky;
   background: var(--white);
   display: flex;
   justify-content: flex-start;
@@ -102,6 +130,7 @@ body {
   font-size: 0.9rem;
   border: 2px solid var(--blue);
   border-radius: 5px;
+  /* width: 25rem; */
 }
 
 .add-post-btn {
@@ -126,14 +155,15 @@ body {
 }
 
 .add-post-card-footer {
-  margin: 0.7rem;
+  margin: 0.7rem 0;
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-end;
 }
 
-.add-post-card-footer-left {
+.add-post-card-footer-right {
   display: flex;
-  gap: 0.8rem;
+  justify-content: flex-end;
+  gap: 0.3rem;
 }
 
 .add-post-footer-btn {
@@ -160,12 +190,17 @@ body {
   color: var(--blue);
 }
 
+.loader {
+  color: var(--blue);
+}
+
 .post {
   background: var(--white);
   box-shadow: var(--post-card-box-shadow);
   padding: 1rem;
   border-radius: 5px;
   width: 35rem;
+  cursor: pointer;
 }
 
 .post-user-detail {
@@ -232,6 +267,17 @@ body {
   display: flex;
   gap: 1rem;
   align-items: center;
+}
+
+.post-card-home {
+  display: flex;
+  flex-direction: row;
+  width: 35rem;
+  gap: 1rem;
+  padding: 1rem;
+  border-radius: 5px;
+  background: var(--white);
+  box-shadow: var(--post-card-box-shadow);
 }
 
 .follow-btn {

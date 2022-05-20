@@ -9,7 +9,7 @@ export function NavBar() {
   const navigate = useNavigate();
   return (
     <nav className="navbar semibold-font-weight">
-      <Link className="nav-icon-link nav-link link-no-style blue-color" to="/">
+      <Link className="nav-icon-link nav-link link-no-style blue-color" to="/home">
         Today's Post
       </Link>
 

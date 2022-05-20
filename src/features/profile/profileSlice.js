@@ -1,6 +1,7 @@
 import axios from "axios";
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const initialState = {
   userData: null,
@@ -20,7 +21,13 @@ export const getUserById = createAsyncThunk(
       } = await axios.get(`/api/users/${userId}`);
       return user;
     } catch (error) {
-      console.log(error);
+      if (error.response.status === 404) {
+        toast("Please do signup!");
+      } else if (error.response.status === 500) {
+        toast("Please do signup to get profile details!");
+      } else {
+        toast(error.message);
+      }
     }
   }
 );
@@ -34,7 +41,11 @@ export const editUserData = createAsyncThunk(
       } = await axios.post("/api/users/edit", { userData });
       return user;
     } catch (error) {
-      console.log(error.response);
+      if (error.response.status === 404) {
+        toast("Please do signup to edit profile!");
+      } else {
+        toast(error.message);
+      }
     }
   }
 );
@@ -51,7 +62,11 @@ export const followUser = createAsyncThunk(
       } = await axios.post(`/api/users/follow/${followUserId}`);
       return { followUser, followers, following };
     } catch (error) {
-      console.log(error);
+      if (error.response.status === 404) {
+        toast("Please do signup to follow user!");
+      } else {
+        toast(error.message);
+      }
     }
   }
 );
@@ -68,7 +83,11 @@ export const unFollowUser = createAsyncThunk(
       } = await axios.post(`/api/users/unfollow/${followUserId}`);
       return { followUser, followers, following };
     } catch (error) {
-      console.log(error);
+      if (error.response.status === 404) {
+        toast("Please do signup to unfollow user!");
+      } else {
+        toast(error.message);
+      }
     }
   }
 );

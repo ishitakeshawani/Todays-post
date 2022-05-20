@@ -14,6 +14,10 @@ import {
 import { AddPostModal, EditProfileModal } from "../../modals";
 import "./profilepage.css";
 import { isAlreadyFollowing } from "./utils";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import * as Mui from "@material-ui/core";
+
 
 export const ProfilePage = () => {
   const navigate = useNavigate();
@@ -44,99 +48,106 @@ export const ProfilePage = () => {
   return (
     <div className="homepage">
       <NavBar />
+      <ToastContainer />
       <div className="homepage-section">
         <LeftSidebar
           addPostShowModal={addPostShowModal}
           showModal={showModal}
           setShowModal={setShowModal}
         />
-        {isLoading && userData == null ? (
-          <p>Loading..</p>
-        ) : (
-          <div className="profile-middle-section">
-            <div className="profile-section">
-              <div className="profile-left">
-                <div className="profile-details">
-                  <div className="profile-picture">
-                    <img
-                      className="avatar"
-                      src={`https://ui-avatars.com/api/name=${userData?.firstName}${userData?.lastName}?background=1d9af1&color=fff`}
-                      alt="profile avatar"
-                    />
+
+        <div className="profile-middle-section">
+          {isLoading && userData == null ? (
+            <Mui.Grid container justify="center">
+                <Mui.CircularProgress />
+              </Mui.Grid>
+          ) : (
+            <div>
+              <div className="profile-section">
+                <div className="profile-left">
+                  <div className="profile-details">
+                    <div className="profile-picture">
+                      <img
+                        className="avatar"
+                        src={`https://ui-avatars.com/api/name=${userData?.firstName}${userData?.lastName}?background=1d9af1&color=fff`}
+                        alt="profile avatar"
+                      />
+                    </div>
+                    <div className="user-first-last-names">
+                      {userData?.firstName} {userData?.lastName}
+                    </div>
+                    <div className="username">@{userData?.username}</div>
+                    <div className="user-bio">{userData?.bio}</div>
+                    <div className="website">
+                      <span className="website-title">Website:</span>{" "}
+                      <a href={userData?.website} target="_blank">
+                        {userData?.website}
+                      </a>
+                    </div>
                   </div>
-                  <div className="user-first-last-names">
-                    {userData?.firstName} {userData?.lastName}
-                  </div>
-                  <div className="username">@{userData?.username}</div>
-                  <div className="user-bio">{userData?.bio}</div>
-                  <div className="website">
-                    <span className="website-title">Website:</span>{" "}
-                    <a href={userData?.website} target="_blank">
-                      {userData?.website}
-                    </a>
+                  <div className="posts-follows-number">
+                    <div className="user-posts">
+                      <div className="user-posts num">{postsList?.length}</div>
+                      <div className="user-posts-title">Posts</div>
+                    </div>
+                    <div className="user-posts">
+                      <div className="user-posts num">
+                        {userData?.followers.length}
+                      </div>
+                      <div className="user-posts-title">Followers</div>
+                    </div>
+                    <div className="user-posts">
+                      <div className="user-posts num">
+                        {userData?.following.length}
+                      </div>
+                      <div className="user-posts-title">Following</div>
+                    </div>
                   </div>
                 </div>
-                <div className="posts-follows-number">
-                  <div className="user-posts">
-                    <div className="user-posts num">{postsList?.length}</div>
-                    <div className="user-posts-title">Posts</div>
-                  </div>
-                  <div className="user-posts">
-                    <div className="user-posts num">
-                      {userData?.followers.length}
-                    </div>
-                    <div className="user-posts-title">Followers</div>
-                  </div>
-                  <div className="user-posts">
-                    <div className="user-posts num">
-                      {userData?.following.length}
-                    </div>
-                    <div className="user-posts-title">Following</div>
-                  </div>
+                <div className="profile-right">
+                  {currentUserId === userId && (
+                    <button
+                      className="btn profile-btn"
+                      onClick={() => setShowEditPostModal(true)}
+                    >
+                      Edit Profile
+                    </button>
+                  )}
+                  {currentUserId !== userId && (
+                    <button
+                      className="btn profile-btn"
+                      onClick={() => handleFollow(userId)}
+                    >
+                      {isFollowing ? "Following" : "Follow"}
+                    </button>
+                  )}
+                  {currentUserId === userId && (
+                    <button
+                      className="btn profile-btn"
+                      onClick={() => {
+                        dispatch(logout());
+                        navigate("/login");
+                      }}
+                    >
+                      Logout
+                    </button>
+                  )}
                 </div>
               </div>
-              <div className="profile-right">
-                {currentUserId === userId && (
-                  <button
-                    className="btn profile-btn"
-                    onClick={() => setShowEditPostModal(true)}
-                  >
-                    Edit Profile
-                  </button>
-                )}
-                {currentUserId !== userId && (
-                  <button
-                    className="btn profile-btn"
-                    onClick={() => handleFollow(userId)}
-                  >
-                    {isFollowing ? "Following" : "Follow"}
-                  </button>
-                )}
-                {currentUserId === userId && (
-                  <button
-                    className="btn profile-btn"
-                    onClick={() => {
-                      dispatch(logout());
-                      navigate("/login");
-                    }}
-                  >
-                    Logout
-                  </button>
-                )}
+              <div className="recent-posts-section">
+                <div className="recent-posts-title">Recent Posts</div>
+                <div className="posts-at-profile">
+                  {postsList.length > 0
+                    ? postsList.map((post, index) => (
+                        <PostCard key={index} post={post} />
+                      ))
+                    : "You have not post anything."}
+                </div>
               </div>
             </div>
-            <div className="recent-posts-section">
-              <div className="recent-posts-title">Recent Posts</div>
-              <div className="posts-at-profile">
-                {postsList.length > 0
-                  ? postsList.map((post, index) => (
-                      <PostCard key={index} post={post} />
-                    ))
-                  : "You have not post anything."}
-              </div>
-            </div>
-          </div>
-        )}
+          )}
+        </div>
+
         <RightSection />
       </div>
       {showModal && (

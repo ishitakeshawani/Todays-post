@@ -16,13 +16,13 @@ import { Link, useNavigate } from "react-router-dom";
 
 export function PostCard({ post }) {
   const [showModal, setShowModal] = useState(false);
-  const { isPostInEditMode, bookmarks } = usePosts();
+  const { isPostInEditMode, bookmarks, isLikePostLoading } = usePosts();
   const { user } = useAuth();
   const navigate = useNavigate();
   const userName = user?.username;
   const userId = user?._id;
   const dispatch = useDispatch();
-
+ 
   const isPostAlreadyLiked = isPostLiked(user, post.likes);
   const isPostAlreadyBookmarked = isPostBookmarked(bookmarks, post._id);
 
@@ -86,7 +86,7 @@ export function PostCard({ post }) {
                   : "add-post-footer-btn"
               }
               onClick={() => likePost(post._id)}
-            >
+            > 
               {isPostAlreadyLiked ? (
                 <span className="material-symbols-sharp">favorite</span>
               ) : (
@@ -95,9 +95,14 @@ export function PostCard({ post }) {
             </button>
             <span>{post.likes?.likeCount} </span>
           </div>
-          <Link className="add-post-footer-btn" to={`/post/${post._id}`}>
-            <span className="material-symbols-outlined">comment</span>
-          </Link>
+          <div className="like-count-section">
+            <Link className="add-post-footer-btn" to={`/post/${post._id}`}>
+              <span className="material-symbols-outlined">comment</span>
+            </Link>
+            <span>
+              {post?.comments?.length == 0 ? "0" : post?.comments?.length}{" "}
+            </span>
+          </div>
         </div>
 
         {post.username === user.username ? (
