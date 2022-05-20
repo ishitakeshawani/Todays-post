@@ -10,10 +10,11 @@ import {
 } from "../../features/posts/postSlice";
 import { useDispatch } from "react-redux";
 import { LeftSidebar, PostCard, RightSection } from "../../components";
-import { useAuth } from "../../features/auth/authSlice";
+import { useAuth, existedUser } from "../../features/auth/authSlice";
 import { postsBySortType } from "../../features/posts/utils";
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import * as Mui from "@material-ui/core";
 
 export function HomePage() {
   const [showModal, setShowModal] = useState(false);
@@ -27,6 +28,13 @@ export function HomePage() {
   useEffect(() => {
     dispatch(getAllPosts());
   }, [dispatch]);
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token !== null) {
+      dispatch(existedUser());
+    }
+  }, []);
 
   const postList = postsBySortType(posts, sortType);
 
@@ -147,7 +155,9 @@ export function HomePage() {
               </div>
             </div>
             {isLoading ? (
-              <p>Loading..</p>
+              <Mui.Grid container justify="center">
+                <Mui.CircularProgress />
+              </Mui.Grid>
             ) : postList?.length > 0 ? (
               postList?.map((post, index) => (
                 <PostCard key={index} post={post} />
