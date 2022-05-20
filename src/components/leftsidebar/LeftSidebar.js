@@ -41,11 +41,6 @@ export function LeftSidebar({
       path: isLoggedIn ? `/profile/${userId}` : `/login`,
       iconName: isLoggedIn ? "login" : "logout",
     },
-    {
-      name: isLoggedIn ? "Logout" : "Login",
-      path: isLoggedIn ? `/profile/${userId}` : `/login`,
-      iconName: isLoggedIn ? "login" : "logout",
-    },
   ];
   return (
     <div className="left-section">
