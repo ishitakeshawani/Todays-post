@@ -1,70 +1,175 @@
-# Getting Started with Create React App
+<h1 align="center">
+       ✨  Today's Post  ✨
+</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div align="center">
 
-## Available Scripts
+![Badge](https://img.shields.io/badge/Tech_Stack-HTML-blue) ![Badge](https://img.shields.io/badge/CSS-orange) ![Badge](https://img.shields.io/badge/React.js-cyan)
+ ![Badge](https://img.shields.io/badge/-JS%20-blue) ![Badge](https://img.shields.io/badge/Version-1.0-green) 
+</div>
 
-In the project directory, you can run:
+<h3 align="center">
+          Live Project : https://todayspost.netlify.app/
+</h3>
+<br />
 
-### `yarn start`
+## Tech Stack : <img src="https://img.shields.io/badge/html5%20-%23E34F26.svg?&style=for-the-badge&logo=html5&logoColor=white"/> <img src="https://img.shields.io/badge/css3%20-%231572B6.svg?&style=for-the-badge&logo=css3&logoColor=white"/> <img src="https://img.shields.io/badge/react%20-%2314354C.svg?&style=for-the-badge&logo=react&logoColor=white"/>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+- **Frontend:** HTML,CSS,React.js
+- **Version Control:** Git and GitHub
+- **Hosting:** Netlify
+- **Code Editor and tools**: VS Code
 
-### `yarn test`
+ <br />
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+   <p align="center">
+    ✨ Welcome to Today's Post ✨ <br />
+ 
+</p>
 
-### `yarn build`
+   
+## Table of Contents
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    - Overview
+    - Folder Structure
+    - UI of Website
+    - Contribution Guideline
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+ <br />
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
 
-### `yarn eject`
+## Overview 🔨
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+Today's post is a social media web app. In which users can do signup and add,remove,bookmark,edit posts. User can edit their profile and sort recent and trending posts.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Folder Structure 📒
+<pre>
+├───app
+├───assets
+│   └───images
+├───backend
+│   ├───controllers
+│   ├───db
+│   └───utils
+├───components
+│   ├───leftsidebar
+│   ├───navbar
+│   ├───postcard
+│   └───right-section
+├───features
+│   ├───auth
+│   ├───posts
+│   └───profile
+├───modals
+│   ├───add-post-modal
+│   └───edit-profile-modal
+└───pages
+    ├───bookmark-page
+    ├───explore-page
+    ├───home-page
+    ├───landing-page
+    ├───login-page
+    ├───profile-page
+    ├───signup-page
+    └───single-post-page
+</pre>
+  <br />
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+## UI of the Website
+   Click on the image to watch it.
 
-## Learn More
+| ![Screenshot (242)](https://user-images.githubusercontent.com/50510726/169463098-ba98db6b-13f9-4ddc-a666-d11a82bade01.png)| ![Screenshot (243)](https://user-images.githubusercontent.com/50510726/169463260-d0f9ff3b-2453-4d7e-876f-163746e0c28d.png) |
+|-|-|
+| Landing Page | Login Page |  
+| ![Screenshot (245)](https://user-images.githubusercontent.com/50510726/169463435-d802e6f8-b308-44ee-a49c-75add1a2b9f0.png) | ![Screenshot (246)](https://user-images.githubusercontent.com/50510726/169463541-20526b9b-50a0-495b-9cf8-243965655727.png)|
+| Home Page | Explore Page|
+| ![Screenshot (247)](https://user-images.githubusercontent.com/50510726/169463826-5c20fc12-ca5d-49fb-b63b-c3c9b4423795.png) | ![Screenshot (248)](https://user-images.githubusercontent.com/50510726/169463953-de6d0a00-a3f4-4cb4-b051-f2c73de2bd75.png)|  
+| Bookmarks Page | Profile Page |
+| ![Screenshot (249)](https://user-images.githubusercontent.com/50510726/169464103-4e26b514-3552-45ca-bc71-8a31ab92076a.png) | ![Screenshot (250)](https://user-images.githubusercontent.com/50510726/169464111-3f061e32-4406-4a28-83fa-8a5c215a37cb.png) |
+| Create Post | Edit Profile |
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+<br/>
 
-### Code Splitting
+## Setup Steps
+  
+- Go to directory
+```
+$ cd Todays-post
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```
+- Start LocalHost Server
+```
+npm run start
+```
+  <br />
+  
+## Contribution Guidelines 🏗
 
-### Analyzing the Bundle Size
+ To start contributing, follow the below guidelines:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+**1.** Fork [this](https://github.com/ishitakeshawani/Todays-post) repository.
 
-### Making a Progressive Web App
+**2.** Clone your forked copy of the project.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```
+git clone https://github.com/ishitakeshawani/Todays-post.git
+```
 
-### Advanced Configuration
+**3.** Navigate to the project directory :file_folder: .
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+```
+cd Todays-post
+```
 
-### Deployment
+**4.** Add a reference(remote) to the original repository.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```
+git remote add upstream Todays-post.git
+```
 
-### `yarn build` fails to minify
+**5.** Check the remotes for this repository.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+```
+git remote -v
+```
+
+**6.** Create a new branch.
+
+```
+git checkout -b <your_branch_name>
+```
+
+**7.** Perfom your desired changes to the code base.
+
+**8.** Track your changes:heavy_check_mark: .
+
+```
+git add .
+```
+
+**9.** Commit your changes .
+
+```
+git commit -m "Relevant message"
+```
+
+**10.** Push the committed changes in your feature branch to your remote repo.
+
+```
+git push -u origin <your_branch_name>
+```
+
+**11.** To create a pull request, click on `compare and pull requests`.
+
+**12.** Add appropriate title and description to your pull request explaining your changes and efforts done.
+
+**13.** Click on `Create Pull Request`.
+
+**14** You did it! 🥳 Wait for your submission to be accepted and your PR to be merged.
+
+<br />
+
+
