@@ -22,8 +22,7 @@ export function PostCard({ post }) {
   const userName = user?.username;
   const userId = user?._id;
   const dispatch = useDispatch();
-  console.log(post);
-
+ 
   const isPostAlreadyLiked = isPostLiked(user, post.likes);
   const isPostAlreadyBookmarked = isPostBookmarked(bookmarks, post._id);
 
