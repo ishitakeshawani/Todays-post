@@ -190,6 +190,10 @@ body {
   color: var(--blue);
 }
 
+.loader {
+  color: var(--blue);
+}
+
 .post {
   background: var(--white);
   box-shadow: var(--post-card-box-shadow);
