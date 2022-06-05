@@ -12,7 +12,7 @@ body {
 
 .homepage-section {
   display: flex;
-  margin-top: 0.1rem;
+  margin-top: 0.5rem;
   height: 100vh;
   justify-content: center;
   width: 90vw;
@@ -299,4 +299,136 @@ body {
   align-items: flex-start;
   color: var(--icon-color);
   font-size: 1rem;
+}
+
+@media screen and (max-device-width: 120em) and (min-device-width: 87em) {
+  .middle-section {
+    width: 35%;
+    margin: 2rem;
+  }
+  .left-section {
+    width: 16%;
+  }
+  .right-section {
+    width: 20%;
+  }
+  .homepage-section {
+    width: 100%;
+  }
+}
+
+@media screen and (max-device-width: 48em) {
+  .left-section {
+    display: none;
+  }
+  .sidebar-item-text {
+    display: none;
+  }
+  .add-post-btn-sidebar {
+    display: none;
+  }
+  .active-sidebar-item {
+    background: none;
+  }
+  .right-section {
+    display: none;
+  }
+  .sidebar-item {
+    width: 8rem;
+  }
+  .middle-section {
+    width: 90%;
+  }
+  .post-card-home {
+    width: 100%;
+  }
+  .post {
+    width: 100%;
+  }
+  .profile-input {
+    width: 100%;
+    justify-content: center;
+  }
+  .text-area {
+    width: 100%;
+  }
+  .add-post-card-footer {
+    width: 70%;
+  }
+  .sortby-chips {
+    display: flex;
+    gap: 0.3rem;
+  }
+  .sort-by-section {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 0rem;
+    grid-gap: 0.4rem;
+  }
+  .sort-by-btn,
+  .sort-by-btn-blue {
+    margin: 0;
+  }
+  .sort-by-btn:hover {
+    margin: 0;
+  }
+}
+
+@media screen and (max-device-width: 30em) {
+  .homepage {
+    overflow-x: hidden;
+    overflow-y: scroll;
+  }
+  .left-section,
+  .right-section {
+    display: none;
+  }
+  .middle-section {
+    width: 100%;
+  }
+  .post-card-home {
+    width: 100%;
+  }
+  .post {
+    width: 100%;
+  }
+  .profile-input {
+    width: 100%;
+    justify-content: center;
+  }
+  .text-area {
+    width: 100%;
+  }
+  .add-post-card-footer {
+    width: 70%;
+  }
+  .sortby-chips {
+    display: flex;
+    gap: 0.3rem;
+  }
+  .sort-by-section {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap: 0rem;
+    grid-gap: 0.4rem;
+  }
+  .sort-by-btn,
+  .sort-by-btn-blue {
+    margin: 0;
+  }
+  .sort-by-btn:hover {
+    margin: 0;
+  }
+  .avatar-img {
+    width: 1.8rem;
+    height: 1.8rem;
+  }
 }

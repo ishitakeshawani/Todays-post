@@ -2,6 +2,7 @@ import React from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../features/auth/authSlice";
 import { nanoid } from "nanoid";
+import { useDispatch } from "react-redux";
 
 export function LeftSidebar({
   addPostShowModal,
@@ -11,6 +12,7 @@ export function LeftSidebar({
 }) {
   const { user, isLoggedIn } = useAuth();
   const userId = user?._id;
+  const dispatch = useDispatch();
   const sideBarItems = [
     {
       name: "Home",
@@ -36,11 +38,6 @@ export function LeftSidebar({
       iconName: "account_circle",
       id: nanoid(),
     },
-    {
-      name: isLoggedIn ? "Logout" : "Login",
-      path: isLoggedIn ? `/profile/${userId}` : `/login`,
-      iconName: isLoggedIn ? "login" : "logout",
-    },
   ];
   return (
     <div className="left-section">
@@ -55,9 +52,25 @@ export function LeftSidebar({
           to={path}
         >
           <span className="material-symbols-outlined">{iconName}</span>
-          <span>{name}</span>
+          <span className="sidebar-item-text">{name}</span>
         </NavLink>
       ))}
+      <NavLink
+        className={({ isActive }) =>
+          `${isActive ? "active-sidebar-item" : ""} link-no-style sidebar-item`
+        }
+        to="/login"
+        onClick={() => {
+          dispatch(logout());
+        }}
+      >
+        <span className="material-symbols-outlined">
+          {isLoggedIn ? "Logout" : "Login"}
+        </span>
+        <span className="sidebar-item-text">
+          {isLoggedIn ? "Logout" : "Login"}
+        </span>
+      </NavLink>
       {!isSinglePost && (
         <button
           className="link-no-style sidebar-item btn add-post-btn-sidebar"
