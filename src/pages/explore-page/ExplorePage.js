@@ -3,7 +3,7 @@ import { NavBar } from "../../components/navbar/NavBar";
 import { AddPostModal } from "../../modals";
 import { usePosts, getAllPosts } from "../../features/posts/postSlice";
 import { useDispatch } from "react-redux";
-import { LeftSidebar, PostCard, RightSection } from "../../components";
+import { BottomNavbar, LeftSidebar, PostCard, RightSection } from "../../components";
 import * as Mui from "@material-ui/core";
 
 export function ExplorePage() {
@@ -46,6 +46,7 @@ export function ExplorePage() {
         </div>
         <RightSection />
       </div>
+      <BottomNavbar />
     </div>
   );
 }

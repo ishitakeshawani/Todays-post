@@ -1,6 +1,6 @@
 import { React, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { LeftSidebar, RightSection, NavBar, PostCard } from "../../components";
+import { LeftSidebar, RightSection, NavBar, PostCard, BottomNavbar } from "../../components";
 import { getBookmarkedPosts, usePosts } from "../../features/posts/postSlice";
 import { AddPostModal } from "../../modals";
 import "./bookmark.css";
@@ -53,6 +53,7 @@ export function BookmarkPage() {
           <RightSection />
         </div>
       </div>
+      <BottomNavbar />
     </div>
   );
 }

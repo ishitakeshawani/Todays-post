@@ -1,7 +1,13 @@
 import { React, useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useParams, useNavigate } from "react-router-dom";
-import { LeftSidebar, RightSection, NavBar, PostCard } from "../../components";
+import {
+  LeftSidebar,
+  RightSection,
+  NavBar,
+  PostCard,
+  BottomNavbar,
+} from "../../components";
 import { getAllPostOfUser } from "../../features";
 import { useAuth, logout } from "../../features/auth/authSlice";
 import { usePosts } from "../../features/posts/postSlice";
@@ -17,7 +23,6 @@ import { isAlreadyFollowing } from "./utils";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import * as Mui from "@material-ui/core";
-
 
 export const ProfilePage = () => {
   const navigate = useNavigate();
@@ -59,8 +64,8 @@ export const ProfilePage = () => {
         <div className="profile-middle-section">
           {isLoading && userData == null ? (
             <Mui.Grid container justify="center">
-                <Mui.CircularProgress />
-              </Mui.Grid>
+              <Mui.CircularProgress />
+            </Mui.Grid>
           ) : (
             <div>
               <div className="profile-section">
@@ -160,6 +165,7 @@ export const ProfilePage = () => {
           userData={userData}
         />
       )}
+      <BottomNavbar />
     </div>
   );
 };

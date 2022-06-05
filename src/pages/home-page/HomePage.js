@@ -9,7 +9,12 @@ import {
   setSortType,
 } from "../../features/posts/postSlice";
 import { useDispatch } from "react-redux";
-import { LeftSidebar, PostCard, RightSection } from "../../components";
+import {
+  BottomNavbar,
+  LeftSidebar,
+  PostCard,
+  RightSection,
+} from "../../components";
 import { useAuth, existedUser } from "../../features/auth/authSlice";
 import { postsBySortType } from "../../features/posts/utils";
 import { ToastContainer } from "react-toastify";
@@ -169,6 +174,7 @@ export function HomePage() {
         </div>
         <RightSection />
       </div>
+      <BottomNavbar />
     </div>
   );
 }
