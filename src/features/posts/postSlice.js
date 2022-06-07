@@ -28,7 +28,6 @@ export const createPost = createAsyncThunk("posts/Post", async (postData) => {
 export const getAllPosts = createAsyncThunk("posts/getAllPosts", async () => {
   try {
     const { data: posts } = await axios.get("/api/posts");
-    console.log(posts.posts);
     return posts.posts;
   } catch (error) {
     if (error.response.status === 404) {

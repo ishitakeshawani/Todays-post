@@ -34,13 +34,6 @@ export function HomePage() {
     dispatch(getAllPosts());
   }, [dispatch]);
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token !== null) {
-      dispatch(existedUser());
-    }
-  }, []);
-
   const postList = postsBySortType(posts, sortType);
 
   const handleAddPost = (e) => {

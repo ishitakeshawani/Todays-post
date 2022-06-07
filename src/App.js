@@ -19,12 +19,6 @@ function App() {
   const navigate = useNavigate();
   const { isLoggedIn } = useAuth();
   const dispatch = useDispatch();
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    if (token !== null) {
-      dispatch(existedUser());
-    }
-  }, []);
 
   return (
     <div className="App">

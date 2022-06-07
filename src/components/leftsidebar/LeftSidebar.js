@@ -1,6 +1,6 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
-import { useAuth } from "../../features/auth/authSlice";
+import { useAuth, logout } from "../../features/auth/authSlice";
 import { nanoid } from "nanoid";
 import { useDispatch } from "react-redux";
 
@@ -59,10 +59,10 @@ export function LeftSidebar({
         className={({ isActive }) =>
           `${isActive ? "active-sidebar-item" : ""} link-no-style sidebar-item`
         }
-        to="/login"
         onClick={() => {
           dispatch(logout());
         }}
+        to="/login"
       >
         <span className="material-symbols-outlined">
           {isLoggedIn ? "Logout" : "Login"}

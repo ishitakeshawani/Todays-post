@@ -1,7 +1,7 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
 import "./bottomnavbar.css";
-import { useAuth } from "../../features/auth/authSlice";
+import { useAuth,logout } from "../../features/auth/authSlice";
 import { useDispatch } from "react-redux";
 
 export function BottomNavbar() {
