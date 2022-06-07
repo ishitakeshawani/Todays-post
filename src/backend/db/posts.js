@@ -9,8 +9,7 @@ import { formatDate } from "../utils/authUtils";
 export const posts = [
   {
     _id: uuid(),
-    content:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
+    content: "The purpose of our lives is to be happy.",
     likes: {
       likeCount: 10,
       likedBy: [],
@@ -27,7 +26,7 @@ export const posts = [
   {
     _id: uuid(),
     content:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
+      "Any app that can be written in JavaScript, will eventually be written in JavaScript.",
     likes: {
       likeCount: 28,
       likedBy: [],
@@ -44,7 +43,7 @@ export const posts = [
   {
     _id: uuid(),
     content:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
+      "JavaScript: Don't judge me by my bad parts, learn the good stuff and stick with that!",
     likes: {
       likeCount: 5,
       likedBy: [],
@@ -61,7 +60,7 @@ export const posts = [
   {
     _id: uuid(),
     content:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
+      "Money and success don’t change people; they merely amplify what is already there.",
     likes: {
       likeCount: 10,
       likedBy: [],
@@ -78,7 +77,7 @@ export const posts = [
   {
     _id: uuid(),
     content:
-      "At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.",
+      "Many of life’s failures are people who did not realize how close they were to success when they gave up.",
     likes: {
       likeCount: 3,
       likedBy: [],
