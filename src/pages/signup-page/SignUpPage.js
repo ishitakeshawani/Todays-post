@@ -6,7 +6,7 @@ import { useDispatch } from "react-redux";
 import { signup } from "../../features/auth/authSlice";
 import { doValidate } from "./utiils";
 import { useAuth } from "../../features/auth/authSlice";
-import { ToastContainer } from "react-toastify";
+import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 export function SignUpPage() {
@@ -24,21 +24,25 @@ export function SignUpPage() {
   const [type, setType] = useState("password");
   const [confirmPasswordType, setConfirmPasswordType] = useState("password");
   const [passwordError, setPasswordError] = useState("");
-  const { isLoggedIn } = useAuth();
 
   const onHandleSubmit = async (e) => {
-    if (doValidate(userData, setError, setPasswordError)) {
-      e.preventDefault();
-      dispatch(signup(userData));
-      setUserData({
-        email: "",
-        password: "",
-        confirmPassword: "",
-        firstName: "",
-        lastName: "",
-        username: "",
-      });
-      navigate("/home");
+    try {
+      if (doValidate(userData, setError, setPasswordError)) {
+        e.preventDefault();
+        dispatch(signup(userData));
+        setUserData({
+          email: "",
+          password: "",
+          confirmPassword: "",
+          firstName: "",
+          lastName: "",
+          username: "",
+        });
+        navigate("/home");
+      }
+    } catch (error) {
+      const notify = () => toast(error.message);
+      notify();
     }
   };
   return (

@@ -1,0 +1,26 @@
+.bottom-navbar {
+  display: flex;
+  gap: 1rem;
+  width: 100%;
+  display: none;
+}
+
+@media screen and (max-device-width: 48em) {
+  .bottom-navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    background: white;
+    padding: 1rem;
+  }
+  .icon {
+    color: black;
+  }
+  .current-item {
+    color: var(--blue);
+  }
+}

@@ -16,6 +16,21 @@ export function LoginPage() {
   const [error, setError] = useState("");
   const [passwordError, setPasswordError] = useState("");
 
+  const testLogin = async (e) => {
+    e.preventDefault();
+    let testData = {
+      email: "ishitakeshawani@gmail.com",
+      password: "ishita123",
+      confirmPassword: "ishita123",
+      firstName: "Ishita",
+      lastName: "Keshawani",
+      username: "ishita1608",
+    };
+    dispatch(signup(testData));
+    dispatch(login(testData));
+    navigate("/home");
+  };
+
   const doValidate = () => {
     if (
       !/^([A-Za-z0-9_\-\.])+\@([A-Za-z0-9_\-\.])+\.([A-Za-z]{2,4})$/.test(
@@ -40,14 +55,19 @@ export function LoginPage() {
     return true;
   };
   const onSubmitHandler = async (e) => {
-    if (doValidate()) {
-      e.preventDefault();
-      dispatch(login(userData));
-      setUserData({
-        email: "",
-        password: "",
-      });
-      navigate("/home");
+    try {
+      if (doValidate()) {
+        e.preventDefault();
+        dispatch(login(userData));
+        setUserData({
+          email: "",
+          password: "",
+        });
+        navigate("/home");
+      }
+    } catch (error) {
+      const notify = () => toast(error.message);
+      notify();
     }
   };
   return (
@@ -111,6 +131,13 @@ export function LoginPage() {
             onClick={(e) => onSubmitHandler(e)}
           >
             Login
+          </button>
+          <button
+            type="submit"
+            className="btn btn-login"
+            onClick={(e) => testLogin(e)}
+          >
+            Login with test credentials
           </button>
 
           <Link to="/signup" className="link-no-style signup-link">

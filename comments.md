@@ -1,0 +1,3 @@
+- Changed data of posts and users
+- Added bottom navigation bar
+- Made project responsive

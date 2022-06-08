@@ -24,7 +24,11 @@ export const signup = createAsyncThunk(
       toast("Sucessfully made an account!");
       return { createdUser, encodedToken };
     } catch (error) {
-      toast(error.message);
+      if (error.response.status === 422) {
+        toast("User Already Exists!");
+      } else {
+        toast(error.message);
+      }
       return rejectWithValue(error.message);
     }
   }
@@ -43,6 +47,8 @@ export const login = createAsyncThunk(
     } catch (error) {
       if (error.response.status === 404) {
         toast("Please do signup first!");
+      } else if (error.response.status === 401) {
+        toast("The credentials you entered are invalid");
       } else {
         toast(error.message);
       }

@@ -94,3 +94,49 @@
   gap: 1rem;
   flex-direction: column;
 }
+
+@media screen and (max-device-width: 140em) and (min-device-width: 87em) {
+  .profile-middle-section {
+    width: 35%;
+  }
+  .left-section {
+    width: 16%;
+  }
+  .right-section {
+    width: 20%;
+  }
+  .homepage-section {
+    width: 100%;
+  }
+  .user-suggested-profile {
+    width: 17rem;
+  }
+  .profile-section{
+    width: 100%;
+  }
+  
+}
+
+@media screen and (max-device-width: 40em) {
+  .profile-section {
+    width: 100%;
+  }
+  .profile-right {
+    width: 30%;
+  }
+  .profile-btn {
+    padding: 0.6rem 0.8rem;
+  }
+}
+
+@media screen and (max-device-width: 30em) {
+  .profile-section {
+    width: 100%;
+  }
+  .profile-right {
+    width: 30%;
+  }
+  .profile-btn {
+    padding: 0.6rem 0.8rem;
+  }
+}
