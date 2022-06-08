@@ -1,5 +1,6 @@
 body {
   background: var(--bgcolor);
+  overflow-x:hidden;
 }
 
 .homepage {
