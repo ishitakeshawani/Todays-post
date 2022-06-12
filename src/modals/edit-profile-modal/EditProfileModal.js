@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useEffect, useRef } from "react";
 import { editUserData } from "../../features/profile/profileSlice";
 import "./editprofilemodal.css";
 import { useDispatch } from "react-redux";
@@ -11,6 +11,7 @@ export function EditProfileModal({
   const [userWebsite, setUserWebsite] = useState(null);
   const [userBio, setUserBio] = useState(null);
   const dispatch = useDispatch();
+  const modalAreaRef = useRef(null);
   const editProfile = () => {
     const data = {
       ...userData,
@@ -19,10 +20,25 @@ export function EditProfileModal({
     };
     dispatch(editUserData({ userData: data }));
   };
+  const handleClickOutSide = (e) => {
+    const path = e.path || (e.composedPath && e.composedPath());
+    if (!path.includes(modalAreaRef.current)) {
+      setShowEditPostModal(!showEditPostModal);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutSide);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutSide);
+    };
+  }, []);
+
   return (
     <div className="modal">
       <div>
-        <div className="add-post-card-edit-profile">
+        <div className="add-post-card-edit-profile" ref={modalAreaRef}>
           <div className="profile-image-add">
             <div className="profile-image-title">Profile picture:</div>
             <input type="file" accept="image/*" title=" " />

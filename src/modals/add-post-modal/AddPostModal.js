@@ -1,4 +1,4 @@
-import { React, useState } from "react";
+import { React, useState, useRef, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { useAuth } from "../../features/auth/authSlice";
 import { createPost, editPost } from "../../features/posts/postSlice";
@@ -13,6 +13,22 @@ export function AddPostModal({
   const [postText, setPostText] = useState("");
   const { user } = useAuth();
   const dispatch = useDispatch();
+  const modalAreaRef = useRef(null);
+
+  const handleClickOutSide = (e) => {
+    const path = e.path || (e.composedPath && e.composedPath());
+    if (!path.includes(modalAreaRef.current)) {
+      setShowModal(!showModal);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleClickOutSide);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutSide);
+    };
+  }, []);
 
   const handleAddPost = (e) => {
     e.preventDefault();
@@ -32,7 +48,7 @@ export function AddPostModal({
   return (
     <div id="myModal" className="modal">
       <div>
-        <div className="add-post-card">
+        <div className="add-post-card" ref={modalAreaRef}>
           <div className="profile-input">
             <textarea
               name="post-input"
