@@ -1,3 +1,4 @@
 - Changed data of posts and users
 - Added bottom navigation bar
 - Made project responsive
+- Added functionality of close modal when user do click outside
